@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Highcharts Drilldown module
  *
@@ -28,7 +28,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'modules/drilldown.src.js', [_modules['parts/Chart.js'], _modules['parts/Color.js'], _modules['parts/Globals.js'], _modules['parts/Options.js'], _modules['parts/Point.js'], _modules['parts/SVGRenderer.js'], _modules['parts/Tick.js'], _modules['parts/Utilities.js']], function (Chart, Color, H, O, Point, SVGRenderer, Tick, U) {
+    _registerModule(_modules, 'modules/drilldown.src.js', [_modules['parts/Chart.js'], _modules['Core/Color.js'], _modules['Core/Globals.js'], _modules['Core/Options.js'], _modules['parts/Point.js'], _modules['parts/SVGRenderer.js'], _modules['Core/Axis/Tick.js'], _modules['Core/Utilities.js']], function (Chart, Color, H, O, Point, SVGRenderer, Tick, U) {
         /* *
          *
          *  Highcharts Drilldown module

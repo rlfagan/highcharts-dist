@@ -1,5 +1,5 @@
 /**
- * @license Highcharts Gantt JS v8.1.2 (2020-06-16)
+ * @license Highcharts Gantt JS v8.1.2 (2020-07-09)
  *
  * Tree Grid
  *
@@ -28,7 +28,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'parts-gantt/Tree.js', [_modules['parts/Utilities.js']], function (U) {
+    _registerModule(_modules, 'parts-gantt/Tree.js', [_modules['Core/Utilities.js']], function (U) {
         /* *
          *
          *  (c) 2016-2020 Highsoft AS
@@ -162,7 +162,7 @@
 
         return Tree;
     });
-    _registerModule(_modules, 'parts-gantt/TreeGridTick.js', [_modules['parts/Utilities.js']], function (U) {
+    _registerModule(_modules, 'parts-gantt/TreeGridTick.js', [_modules['Core/Utilities.js']], function (U) {
         /* *
          *
          *  (c) 2016 Highsoft AS
@@ -515,7 +515,7 @@
 
         return TreeGridTick;
     });
-    _registerModule(_modules, 'mixins/tree-series.js', [_modules['parts/Color.js'], _modules['parts/Utilities.js']], function (Color, U) {
+    _registerModule(_modules, 'mixins/tree-series.js', [_modules['Core/Color.js'], _modules['Core/Utilities.js']], function (Color, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -743,7 +743,7 @@
 
         return result;
     });
-    _registerModule(_modules, 'parts-gantt/GridAxis.js', [_modules['parts/Axis.js'], _modules['parts/Globals.js'], _modules['parts/Options.js'], _modules['parts/Tick.js'], _modules['parts/Utilities.js']], function (Axis, H, O, Tick, U) {
+    _registerModule(_modules, 'parts-gantt/GridAxis.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Globals.js'], _modules['Core/Options.js'], _modules['Core/Axis/Tick.js'], _modules['Core/Utilities.js']], function (Axis, H, O, Tick, U) {
         /* *
          *
          *  (c) 2016 Highsoft AS
@@ -1658,7 +1658,7 @@
 
         return GridAxis;
     });
-    _registerModule(_modules, 'modules/broken-axis.src.js', [_modules['parts/Axis.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['parts/Stacking.js']], function (Axis, H, U, StackItem) {
+    _registerModule(_modules, 'modules/broken-axis.src.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['parts/Stacking.js']], function (Axis, H, U, StackItem) {
         /* *
          *
          *  (c) 2009-2020 Torstein Honsi
@@ -2238,7 +2238,7 @@
 
         return BrokenAxis;
     });
-    _registerModule(_modules, 'parts-gantt/TreeGridAxis.js', [_modules['parts/Axis.js'], _modules['parts/Tick.js'], _modules['parts-gantt/Tree.js'], _modules['parts-gantt/TreeGridTick.js'], _modules['mixins/tree-series.js'], _modules['parts/Utilities.js']], function (Axis, Tick, Tree, TreeGridTick, TreeSeriesMixin, U) {
+    _registerModule(_modules, 'parts-gantt/TreeGridAxis.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Axis/Tick.js'], _modules['parts-gantt/Tree.js'], _modules['parts-gantt/TreeGridTick.js'], _modules['mixins/tree-series.js'], _modules['Core/Utilities.js']], function (Axis, Tick, Tree, TreeGridTick, TreeSeriesMixin, U) {
         /* *
          *
          *  (c) 2016 Highsoft AS

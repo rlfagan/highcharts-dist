@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Accessibility module
  *
@@ -29,7 +29,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'modules/accessibility/utils/htmlUtilities.js', [_modules['parts/Utilities.js'], _modules['parts/Globals.js']], function (U, H) {
+    _registerModule(_modules, 'modules/accessibility/utils/htmlUtilities.js', [_modules['Core/Utilities.js'], _modules['Core/Globals.js']], function (U, H) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -203,7 +203,7 @@
 
         return HTMLUtilities;
     });
-    _registerModule(_modules, 'modules/accessibility/utils/chartUtilities.js', [_modules['modules/accessibility/utils/htmlUtilities.js'], _modules['parts/Utilities.js']], function (HTMLUtilities, U) {
+    _registerModule(_modules, 'modules/accessibility/utils/chartUtilities.js', [_modules['modules/accessibility/utils/htmlUtilities.js'], _modules['Core/Utilities.js']], function (HTMLUtilities, U) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -394,7 +394,7 @@
 
         return ChartUtilities;
     });
-    _registerModule(_modules, 'modules/accessibility/KeyboardNavigationHandler.js', [_modules['parts/Utilities.js']], function (U) {
+    _registerModule(_modules, 'modules/accessibility/KeyboardNavigationHandler.js', [_modules['Core/Utilities.js']], function (U) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -497,7 +497,7 @@
 
         return KeyboardNavigationHandler;
     });
-    _registerModule(_modules, 'modules/accessibility/utils/EventProvider.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'modules/accessibility/utils/EventProvider.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -547,7 +547,7 @@
 
         return EventProvider;
     });
-    _registerModule(_modules, 'modules/accessibility/utils/DOMElementProvider.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, U, HTMLUtilities) {
+    _registerModule(_modules, 'modules/accessibility/utils/DOMElementProvider.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, U, HTMLUtilities) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -597,7 +597,7 @@
 
         return DOMElementProvider;
     });
-    _registerModule(_modules, 'modules/accessibility/AccessibilityComponent.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/utils/EventProvider.js'], _modules['modules/accessibility/utils/DOMElementProvider.js']], function (H, U, HTMLUtilities, ChartUtilities, EventProvider, DOMElementProvider) {
+    _registerModule(_modules, 'modules/accessibility/AccessibilityComponent.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/utils/EventProvider.js'], _modules['modules/accessibility/utils/DOMElementProvider.js']], function (H, U, HTMLUtilities, ChartUtilities, EventProvider, DOMElementProvider) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -984,7 +984,7 @@
 
         return AccessibilityComponent;
     });
-    _registerModule(_modules, 'modules/accessibility/KeyboardNavigation.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js'], _modules['modules/accessibility/utils/EventProvider.js']], function (H, U, HTMLUtilities, EventProvider) {
+    _registerModule(_modules, 'modules/accessibility/KeyboardNavigation.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js'], _modules['modules/accessibility/utils/EventProvider.js']], function (H, U, HTMLUtilities, EventProvider) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -1358,7 +1358,7 @@
 
         return KeyboardNavigation;
     });
-    _registerModule(_modules, 'modules/accessibility/components/LegendComponent.js', [_modules['parts/Globals.js'], _modules['parts/Legend.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/KeyboardNavigationHandler.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, Legend, U, AccessibilityComponent, KeyboardNavigationHandler, HTMLUtilities) {
+    _registerModule(_modules, 'modules/accessibility/components/LegendComponent.js', [_modules['Core/Globals.js'], _modules['Core/Legend.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/KeyboardNavigationHandler.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, Legend, U, AccessibilityComponent, KeyboardNavigationHandler, HTMLUtilities) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -1687,7 +1687,7 @@
 
         return LegendComponent;
     });
-    _registerModule(_modules, 'modules/accessibility/components/MenuComponent.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/KeyboardNavigationHandler.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, U, AccessibilityComponent, KeyboardNavigationHandler, ChartUtilities, HTMLUtilities) {
+    _registerModule(_modules, 'modules/accessibility/components/MenuComponent.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/KeyboardNavigationHandler.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, U, AccessibilityComponent, KeyboardNavigationHandler, ChartUtilities, HTMLUtilities) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -2053,7 +2053,7 @@
 
         return MenuComponent;
     });
-    _registerModule(_modules, 'modules/accessibility/components/SeriesComponent/SeriesKeyboardNavigation.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/KeyboardNavigationHandler.js'], _modules['modules/accessibility/utils/EventProvider.js'], _modules['modules/accessibility/utils/chartUtilities.js']], function (Chart, H, Point, U, KeyboardNavigationHandler, EventProvider, ChartUtilities) {
+    _registerModule(_modules, 'modules/accessibility/components/SeriesComponent/SeriesKeyboardNavigation.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/KeyboardNavigationHandler.js'], _modules['modules/accessibility/utils/EventProvider.js'], _modules['modules/accessibility/utils/chartUtilities.js']], function (Chart, H, Point, U, KeyboardNavigationHandler, EventProvider, ChartUtilities) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -2669,7 +2669,7 @@
 
         return SeriesKeyboardNavigation;
     });
-    _registerModule(_modules, 'modules/accessibility/components/AnnotationsA11y.js', [_modules['parts/Utilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (U, HTMLUtilities) {
+    _registerModule(_modules, 'modules/accessibility/components/AnnotationsA11y.js', [_modules['modules/accessibility/utils/htmlUtilities.js']], function (HTMLUtilities) {
         /* *
          *
          *  (c) 2009-2019 Øystein Moseng
@@ -2681,7 +2681,6 @@
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
          *
          * */
-        var inArray = U.inArray;
         var escapeStringForHTML = HTMLUtilities.escapeStringForHTML,
             stripHTMLTagsFromString = HTMLUtilities.stripHTMLTagsFromString;
         /**
@@ -2796,8 +2795,7 @@
         function getPointAnnotationTexts(point) {
             var labels = getChartAnnotationLabels(point.series.chart);
             var pointLabels = labels
-                    .filter(function (label) { return inArray(point,
-                label.points) > -1; });
+                    .filter(function (label) { return label.points.indexOf(point) > -1; });
             if (!pointLabels.length) {
                 return [];
             }
@@ -2812,7 +2810,7 @@
 
         return AnnotationsA11y;
     });
-    _registerModule(_modules, 'modules/accessibility/components/SeriesComponent/SeriesDescriber.js', [_modules['parts/Utilities.js'], _modules['modules/accessibility/components/AnnotationsA11y.js'], _modules['modules/accessibility/utils/htmlUtilities.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['parts/Tooltip.js']], function (U, AnnotationsA11y, HTMLUtilities, ChartUtilities, Tooltip) {
+    _registerModule(_modules, 'modules/accessibility/components/SeriesComponent/SeriesDescriber.js', [_modules['Core/Utilities.js'], _modules['modules/accessibility/components/AnnotationsA11y.js'], _modules['modules/accessibility/utils/htmlUtilities.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['parts/Tooltip.js']], function (U, AnnotationsA11y, HTMLUtilities, ChartUtilities, Tooltip) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -3266,7 +3264,7 @@
 
         return SeriesDescriber;
     });
-    _registerModule(_modules, 'modules/accessibility/utils/Announcer.js', [_modules['parts/Globals.js'], _modules['modules/accessibility/utils/DOMElementProvider.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, DOMElementProvider, HTMLUtilities) {
+    _registerModule(_modules, 'modules/accessibility/utils/Announcer.js', [_modules['Core/Globals.js'], _modules['modules/accessibility/utils/DOMElementProvider.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, DOMElementProvider, HTMLUtilities) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -3316,7 +3314,7 @@
 
         return Announcer;
     });
-    _registerModule(_modules, 'modules/accessibility/components/SeriesComponent/NewDataAnnouncer.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/components/SeriesComponent/SeriesDescriber.js'], _modules['modules/accessibility/utils/Announcer.js'], _modules['modules/accessibility/utils/EventProvider.js']], function (H, U, ChartUtilities, SeriesDescriber, Announcer, EventProvider) {
+    _registerModule(_modules, 'modules/accessibility/components/SeriesComponent/NewDataAnnouncer.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/components/SeriesComponent/SeriesDescriber.js'], _modules['modules/accessibility/utils/Announcer.js'], _modules['modules/accessibility/utils/EventProvider.js']], function (H, U, ChartUtilities, SeriesDescriber, Announcer, EventProvider) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -3579,7 +3577,7 @@
 
         return NewDataAnnouncer;
     });
-    _registerModule(_modules, 'modules/accessibility/components/SeriesComponent/forcedMarkers.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'modules/accessibility/components/SeriesComponent/forcedMarkers.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -3754,7 +3752,7 @@
 
         return addForceMarkersEvents;
     });
-    _registerModule(_modules, 'modules/accessibility/components/SeriesComponent/SeriesComponent.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/components/SeriesComponent/SeriesKeyboardNavigation.js'], _modules['modules/accessibility/components/SeriesComponent/NewDataAnnouncer.js'], _modules['modules/accessibility/components/SeriesComponent/forcedMarkers.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/components/SeriesComponent/SeriesDescriber.js'], _modules['parts/Tooltip.js']], function (H, U, AccessibilityComponent, SeriesKeyboardNavigation, NewDataAnnouncer, addForceMarkersEvents, ChartUtilities, SeriesDescriber, Tooltip) {
+    _registerModule(_modules, 'modules/accessibility/components/SeriesComponent/SeriesComponent.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/components/SeriesComponent/SeriesKeyboardNavigation.js'], _modules['modules/accessibility/components/SeriesComponent/NewDataAnnouncer.js'], _modules['modules/accessibility/components/SeriesComponent/forcedMarkers.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/components/SeriesComponent/SeriesDescriber.js'], _modules['parts/Tooltip.js']], function (H, U, AccessibilityComponent, SeriesKeyboardNavigation, NewDataAnnouncer, addForceMarkersEvents, ChartUtilities, SeriesDescriber, Tooltip) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -3856,7 +3854,7 @@
 
         return SeriesComponent;
     });
-    _registerModule(_modules, 'modules/accessibility/components/ZoomComponent.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/KeyboardNavigationHandler.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, U, AccessibilityComponent, KeyboardNavigationHandler, ChartUtilities, HTMLUtilities) {
+    _registerModule(_modules, 'modules/accessibility/components/ZoomComponent.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/KeyboardNavigationHandler.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, U, AccessibilityComponent, KeyboardNavigationHandler, ChartUtilities, HTMLUtilities) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -4164,7 +4162,7 @@
 
         return ZoomComponent;
     });
-    _registerModule(_modules, 'modules/accessibility/components/RangeSelectorComponent.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/KeyboardNavigationHandler.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, U, AccessibilityComponent, KeyboardNavigationHandler, ChartUtilities, HTMLUtilities) {
+    _registerModule(_modules, 'modules/accessibility/components/RangeSelectorComponent.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/KeyboardNavigationHandler.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, U, AccessibilityComponent, KeyboardNavigationHandler, ChartUtilities, HTMLUtilities) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -4445,7 +4443,7 @@
 
         return RangeSelectorComponent;
     });
-    _registerModule(_modules, 'modules/accessibility/components/InfoRegionsComponent.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/utils/Announcer.js'], _modules['modules/accessibility/components/AnnotationsA11y.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, U, AccessibilityComponent, Announcer, AnnotationsA11y, ChartUtilities, HTMLUtilities) {
+    _registerModule(_modules, 'modules/accessibility/components/InfoRegionsComponent.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/utils/Announcer.js'], _modules['modules/accessibility/components/AnnotationsA11y.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js']], function (H, U, AccessibilityComponent, Announcer, AnnotationsA11y, ChartUtilities, HTMLUtilities) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -5052,7 +5050,7 @@
 
         return InfoRegionsComponent;
     });
-    _registerModule(_modules, 'modules/accessibility/components/ContainerComponent.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/AccessibilityComponent.js']], function (H, U, HTMLUtilities, ChartUtilities, AccessibilityComponent) {
+    _registerModule(_modules, 'modules/accessibility/components/ContainerComponent.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/utils/htmlUtilities.js'], _modules['modules/accessibility/utils/chartUtilities.js'], _modules['modules/accessibility/AccessibilityComponent.js']], function (H, U, HTMLUtilities, ChartUtilities, AccessibilityComponent) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -5168,7 +5166,7 @@
 
         return ContainerComponent;
     });
-    _registerModule(_modules, 'modules/accessibility/high-contrast-mode.js', [_modules['parts/Globals.js']], function (H) {
+    _registerModule(_modules, 'modules/accessibility/high-contrast-mode.js', [_modules['Core/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -6602,7 +6600,7 @@
 
         return langOptions;
     });
-    _registerModule(_modules, 'modules/accessibility/options/deprecatedOptions.js', [_modules['parts/Utilities.js']], function (U) {
+    _registerModule(_modules, 'modules/accessibility/options/deprecatedOptions.js', [_modules['Core/Utilities.js']], function (U) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -6843,7 +6841,7 @@
 
         return copyDeprecatedOptions;
     });
-    _registerModule(_modules, 'modules/accessibility/a11y-i18n.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'modules/accessibility/a11y-i18n.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  Accessibility module - internationalization support
@@ -7101,7 +7099,7 @@
         };
 
     });
-    _registerModule(_modules, 'modules/accessibility/focusBorder.js', [_modules['parts/Globals.js'], _modules['parts/SVGElement.js'], _modules['parts/SVGLabel.js'], _modules['parts/Utilities.js']], function (H, SVGElement, SVGLabel, U) {
+    _registerModule(_modules, 'modules/accessibility/focusBorder.js', [_modules['Core/Globals.js'], _modules['parts/SVGElement.js'], _modules['parts/SVGLabel.js'], _modules['Core/Utilities.js']], function (H, SVGElement, SVGLabel, U) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng
@@ -7362,7 +7360,7 @@
         };
 
     });
-    _registerModule(_modules, 'modules/accessibility/accessibility.js', [_modules['modules/accessibility/utils/chartUtilities.js'], _modules['parts/Globals.js'], _modules['modules/accessibility/KeyboardNavigationHandler.js'], _modules['parts/Options.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/KeyboardNavigation.js'], _modules['modules/accessibility/components/LegendComponent.js'], _modules['modules/accessibility/components/MenuComponent.js'], _modules['modules/accessibility/components/SeriesComponent/SeriesComponent.js'], _modules['modules/accessibility/components/ZoomComponent.js'], _modules['modules/accessibility/components/RangeSelectorComponent.js'], _modules['modules/accessibility/components/InfoRegionsComponent.js'], _modules['modules/accessibility/components/ContainerComponent.js'], _modules['modules/accessibility/high-contrast-mode.js'], _modules['modules/accessibility/high-contrast-theme.js'], _modules['modules/accessibility/options/options.js'], _modules['modules/accessibility/options/langOptions.js'], _modules['modules/accessibility/options/deprecatedOptions.js']], function (ChartUtilities, H, KeyboardNavigationHandler, O, Point, U, AccessibilityComponent, KeyboardNavigation, LegendComponent, MenuComponent, SeriesComponent, ZoomComponent, RangeSelectorComponent, InfoRegionsComponent, ContainerComponent, whcm, highContrastTheme, defaultOptionsA11Y, defaultLangOptions, copyDeprecatedOptions) {
+    _registerModule(_modules, 'modules/accessibility/accessibility.js', [_modules['modules/accessibility/utils/chartUtilities.js'], _modules['Core/Globals.js'], _modules['modules/accessibility/KeyboardNavigationHandler.js'], _modules['Core/Options.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js'], _modules['modules/accessibility/AccessibilityComponent.js'], _modules['modules/accessibility/KeyboardNavigation.js'], _modules['modules/accessibility/components/LegendComponent.js'], _modules['modules/accessibility/components/MenuComponent.js'], _modules['modules/accessibility/components/SeriesComponent/SeriesComponent.js'], _modules['modules/accessibility/components/ZoomComponent.js'], _modules['modules/accessibility/components/RangeSelectorComponent.js'], _modules['modules/accessibility/components/InfoRegionsComponent.js'], _modules['modules/accessibility/components/ContainerComponent.js'], _modules['modules/accessibility/high-contrast-mode.js'], _modules['modules/accessibility/high-contrast-theme.js'], _modules['modules/accessibility/options/options.js'], _modules['modules/accessibility/options/langOptions.js'], _modules['modules/accessibility/options/deprecatedOptions.js']], function (ChartUtilities, H, KeyboardNavigationHandler, O, Point, U, AccessibilityComponent, KeyboardNavigation, LegendComponent, MenuComponent, SeriesComponent, ZoomComponent, RangeSelectorComponent, InfoRegionsComponent, ContainerComponent, whcm, highContrastTheme, defaultOptionsA11Y, defaultLangOptions, copyDeprecatedOptions) {
         /* *
          *
          *  (c) 2009-2020 Øystein Moseng

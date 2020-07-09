@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Annotations module
  *
@@ -28,7 +28,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'annotations/eventEmitterMixin.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'annotations/eventEmitterMixin.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -36,7 +36,6 @@
          * */
         var addEvent = U.addEvent,
             fireEvent = U.fireEvent,
-            inArray = U.inArray,
             objectEach = U.objectEach,
             pick = U.pick,
             removeEvent = U.removeEvent;
@@ -80,7 +79,7 @@
                         emitter.target);
                         }
                     };
-                    if (inArray(type, emitter.nonDOMEvents || []) === -1) {
+                    if ((emitter.nonDOMEvents || []).indexOf(type) === -1) {
                         emitter.graphic.on(type, eventHandler);
                     }
                     else {
@@ -269,7 +268,7 @@
 
         return eventEmitterMixin;
     });
-    _registerModule(_modules, 'annotations/ControlPoint.js', [_modules['parts/Utilities.js'], _modules['annotations/eventEmitterMixin.js']], function (U, eventEmitterMixin) {
+    _registerModule(_modules, 'annotations/ControlPoint.js', [_modules['Core/Utilities.js'], _modules['annotations/eventEmitterMixin.js']], function (U, eventEmitterMixin) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -421,7 +420,7 @@
 
         return ControlPoint;
     });
-    _registerModule(_modules, 'annotations/MockPoint.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'annotations/MockPoint.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -872,7 +871,7 @@
 
         return MockPoint;
     });
-    _registerModule(_modules, 'annotations/controllable/controllableMixin.js', [_modules['annotations/ControlPoint.js'], _modules['annotations/MockPoint.js'], _modules['parts/Tooltip.js'], _modules['parts/Utilities.js']], function (ControlPoint, MockPoint, Tooltip, U) {
+    _registerModule(_modules, 'annotations/controllable/controllableMixin.js', [_modules['annotations/ControlPoint.js'], _modules['annotations/MockPoint.js'], _modules['parts/Tooltip.js'], _modules['Core/Utilities.js']], function (ControlPoint, MockPoint, Tooltip, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -1262,7 +1261,7 @@
 
         return controllableMixin;
     });
-    _registerModule(_modules, 'annotations/controllable/markerMixin.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'annotations/controllable/markerMixin.js', [_modules['parts/Chart.js'], _modules['parts/SVGRenderer.js'], _modules['Core/Utilities.js']], function (Chart, SVGRenderer, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -1347,7 +1346,7 @@
                         }]
                 }
             };
-        H.SVGRenderer.prototype.addMarker = function (id, markerOptions) {
+        SVGRenderer.prototype.addMarker = function (id, markerOptions) {
             var options = { id: id };
             var attrs = {
                     stroke: markerOptions.color || 'none',
@@ -1369,11 +1368,14 @@
             return marker;
         };
         /* eslint-disable no-invalid-this, valid-jsdoc */
-        var createMarkerSetter = function (markerType) {
-                return function (value) {
-                    this.attr(markerType, 'url(#' + value + ')');
+        /**
+         * @private
+         */
+        function createMarkerSetter(markerType) {
+            return function (value) {
+                this.attr(markerType, 'url(#' + value + ')');
             };
-        };
+        }
         /**
          * @private
          * @mixin
@@ -1421,7 +1423,7 @@
                 ['markerStart', 'markerEnd'].forEach(setMarker);
             }
         };
-        addEvent(H.Chart, 'afterGetContainer', function () {
+        addEvent(Chart, 'afterGetContainer', function () {
             this.options.defs = merge(defaultMarkers, this.options.defs || {});
             objectEach(this.options.defs, function (def) {
                 if (def.tagName === 'marker' && def.render !== false) {
@@ -1432,14 +1434,13 @@
 
         return markerMixin;
     });
-    _registerModule(_modules, 'annotations/controllable/ControllablePath.js', [_modules['annotations/controllable/controllableMixin.js'], _modules['parts/Globals.js'], _modules['annotations/controllable/markerMixin.js'], _modules['parts/Utilities.js']], function (controllableMixin, H, markerMixin, U) {
+    _registerModule(_modules, 'annotations/controllable/ControllablePath.js', [_modules['annotations/controllable/controllableMixin.js'], _modules['Core/Globals.js'], _modules['annotations/controllable/markerMixin.js'], _modules['Core/Utilities.js']], function (ControllableMixin, H, MarkerMixin, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
          *
          * */
-        var extend = U.extend,
-            merge = U.merge;
+        var extend = U.extend;
         // See TRACKER_FILL in highcharts.src.js
         var TRACKER_FILL = 'rgba(192,192,192,' + (H.svg ? 0.0001 : 0.002) + ')';
         /* eslint-disable no-invalid-this, valid-jsdoc */
@@ -1460,41 +1461,57 @@
          *
          * @param {number} index
          * Index of the path.
-         **/
-        var ControllablePath = function (annotation,
-            options,
-            index) {
-                this.init(annotation,
-            options,
-            index);
-            this.collection = 'shapes';
-        };
-        /**
-         * A map object which allows to map options attributes to element attributes
-         *
-         * @name Highcharts.AnnotationControllablePath.attrsMap
-         * @type {Highcharts.Dictionary<string>}
          */
-        ControllablePath.attrsMap = {
-            dashStyle: 'dashstyle',
-            strokeWidth: 'stroke-width',
-            stroke: 'stroke',
-            fill: 'fill',
-            zIndex: 'zIndex'
-        };
-        merge(true, ControllablePath.prototype, controllableMixin, /** @lends Highcharts.AnnotationControllablePath# */ {
-            /**
-             * @type 'path'
-             */
-            type: 'path',
-            setMarkers: markerMixin.setItemMarkers,
+        var ControllablePath = /** @class */ (function () {
+                /* *
+                 *
+                 *  Constructors
+                 *
+                 * */
+                function ControllablePath(annotation, options, index) {
+                    /* *
+                     *
+                     *  Properties
+                     *
+                     * */
+                    this.addControlPoints = ControllableMixin.addControlPoints;
+                this.anchor = ControllableMixin.anchor;
+                this.attr = ControllableMixin.attr;
+                this.attrsFromOptions = ControllableMixin.attrsFromOptions;
+                this.destroy = ControllableMixin.destroy;
+                this.getPointsOptions = ControllableMixin.getPointsOptions;
+                this.init = ControllableMixin.init;
+                this.linkPoints = ControllableMixin.linkPoints;
+                this.point = ControllableMixin.point;
+                this.rotate = ControllableMixin.rotate;
+                this.scale = ControllableMixin.scale;
+                this.setControlPointsVisibility = ControllableMixin.setControlPointsVisibility;
+                this.setMarkers = MarkerMixin.setItemMarkers;
+                this.transform = ControllableMixin.transform;
+                this.transformPoint = ControllableMixin.transformPoint;
+                this.translate = ControllableMixin.translate;
+                this.translatePoint = ControllableMixin.translatePoint;
+                this.translateShape = ControllableMixin.translateShape;
+                this.update = ControllableMixin.update;
+                /**
+                 * @type 'path'
+                 */
+                this.type = 'path';
+                this.init(annotation, options, index);
+                this.collection = 'shapes';
+            }
+            /* *
+             *
+             *  Functions
+             *
+             * */
             /**
              * Map the controllable path to 'd' path attribute.
              *
              * @return {Highcharts.SVGPathArray|null}
              * A path's d attribute.
              */
-            toD: function () {
+            ControllablePath.prototype.toD = function () {
                 var dOption = this.options.d;
                 if (dOption) {
                     return typeof dOption === 'function' ?
@@ -1530,11 +1547,11 @@
                 return showPath ?
                     this.chart.renderer.crispLine(d, this.graphic.strokeWidth()) :
                     null;
-            },
-            shouldBeDrawn: function () {
-                return (controllableMixin.shouldBeDrawn.call(this) || Boolean(this.options.d));
-            },
-            render: function (parent) {
+            };
+            ControllablePath.prototype.shouldBeDrawn = function () {
+                return (ControllableMixin.shouldBeDrawn.call(this) || Boolean(this.options.d));
+            };
+            ControllablePath.prototype.render = function (parent) {
                 var options = this.options,
                     attrs = this.attrsFromOptions(options);
                 this.graphic = this.annotation.chart.renderer
@@ -1560,14 +1577,14 @@
                             options.snap * 2
                     });
                 }
-                controllableMixin.render.call(this);
+                ControllableMixin.render.call(this);
                 extend(this.graphic, {
-                    markerStartSetter: markerMixin.markerStartSetter,
-                    markerEndSetter: markerMixin.markerEndSetter
+                    markerStartSetter: MarkerMixin.markerStartSetter,
+                    markerEndSetter: MarkerMixin.markerEndSetter
                 });
                 this.setMarkers(this);
-            },
-            redraw: function (animation) {
+            };
+            ControllablePath.prototype.redraw = function (animation) {
                 var d = this.toD(),
                     action = animation ? 'animate' : 'attr';
                 if (d) {
@@ -1579,19 +1596,44 @@
                     this.tracker.attr({ d: 'M 0 ' + -9e9 });
                 }
                 this.graphic.placed = this.tracker.placed = Boolean(d);
-                controllableMixin.redraw.call(this, animation);
-            }
-        });
+                ControllableMixin.redraw.call(this, animation);
+            };
+            /* *
+             *
+             *  Static Properties
+             *
+             * */
+            /**
+             * A map object which allows to map options attributes to element attributes
+             *
+             * @name Highcharts.AnnotationControllablePath.attrsMap
+             * @type {Highcharts.Dictionary<string>}
+             */
+            ControllablePath.attrsMap = {
+                dashStyle: 'dashstyle',
+                strokeWidth: 'stroke-width',
+                stroke: 'stroke',
+                fill: 'fill',
+                zIndex: 'zIndex'
+            };
+            return ControllablePath;
+        }());
 
         return ControllablePath;
     });
-    _registerModule(_modules, 'annotations/controllable/ControllableRect.js', [_modules['annotations/controllable/controllableMixin.js'], _modules['annotations/controllable/ControllablePath.js'], _modules['parts/Utilities.js']], function (controllableMixin, ControllablePath, U) {
+    _registerModule(_modules, 'annotations/controllable/ControllableRect.js', [_modules['annotations/controllable/controllableMixin.js'], _modules['annotations/controllable/ControllablePath.js'], _modules['Core/Utilities.js']], function (ControllableMixin, ControllablePath, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
          *
          * */
         var merge = U.merge;
+        /**
+         * @typedef {Annotation.ControllablePath.AttrsMap}
+         *          Annotation.ControllableRect.AttrsMap
+         * @property {string} width=width
+         * @property {string} height=height
+         */
         /* eslint-disable no-invalid-this, valid-jsdoc */
         /**
          * A controllable rect class.
@@ -1611,44 +1653,58 @@
          * @param {number} index
          * Index of the rectangle
          */
-        var ControllableRect = function (annotation,
-            options,
-            index) {
-                this.init(annotation,
-            options,
-            index);
-            this.collection = 'shapes';
-        };
-        /**
-         * @typedef {Annotation.ControllablePath.AttrsMap}
-         *          Annotation.ControllableRect.AttrsMap
-         * @property {string} width=width
-         * @property {string} height=height
-         */
-        /**
-         * A map object which allows to map options attributes to element attributes
-         *
-         * @type {Annotation.ControllableRect.AttrsMap}
-         */
-        ControllableRect.attrsMap = merge(ControllablePath.attrsMap, {
-            width: 'width',
-            height: 'height'
-        });
-        merge(true, ControllableRect.prototype, controllableMixin, /** @lends Annotation.ControllableRect# */ {
-            /**
-             * @type 'rect'
-             */
-            type: 'rect',
-            translate: controllableMixin.translateShape,
-            render: function (parent) {
+        var ControllableRect = /** @class */ (function () {
+                /* *
+                 *
+                 *  Constructors
+                 *
+                 * */
+                function ControllableRect(annotation, options, index) {
+                    /* *
+                     *
+                     *  Properties
+                     *
+                     * */
+                    this.addControlPoints = ControllableMixin.addControlPoints;
+                this.anchor = ControllableMixin.anchor;
+                this.attr = ControllableMixin.attr;
+                this.attrsFromOptions = ControllableMixin.attrsFromOptions;
+                this.destroy = ControllableMixin.destroy;
+                this.getPointsOptions = ControllableMixin.getPointsOptions;
+                this.init = ControllableMixin.init;
+                this.linkPoints = ControllableMixin.linkPoints;
+                this.point = ControllableMixin.point;
+                this.rotate = ControllableMixin.rotate;
+                this.scale = ControllableMixin.scale;
+                this.setControlPointsVisibility = ControllableMixin.setControlPointsVisibility;
+                this.shouldBeDrawn = ControllableMixin.shouldBeDrawn;
+                this.transform = ControllableMixin.transform;
+                this.transformPoint = ControllableMixin.transformPoint;
+                this.translatePoint = ControllableMixin.translatePoint;
+                this.translateShape = ControllableMixin.translateShape;
+                this.update = ControllableMixin.update;
+                /**
+                 * @type 'rect'
+                 */
+                this.type = 'rect';
+                this.translate = ControllableMixin.translateShape;
+                this.init(annotation, options, index);
+                this.collection = 'shapes';
+            }
+            /* *
+             *
+             *  Functions
+             *
+             * */
+            ControllableRect.prototype.render = function (parent) {
                 var attrs = this.attrsFromOptions(this.options);
                 this.graphic = this.annotation.chart.renderer
                     .rect(0, -9e9, 0, 0)
                     .attr(attrs)
                     .add(parent);
-                controllableMixin.render.call(this);
-            },
-            redraw: function (animation) {
+                ControllableMixin.render.call(this);
+            };
+            ControllableRect.prototype.redraw = function (animation) {
                 var position = this.anchor(this.points[0]).absolutePosition;
                 if (position) {
                     this.graphic[animation ? 'animate' : 'attr']({
@@ -1665,13 +1721,28 @@
                     });
                 }
                 this.graphic.placed = Boolean(position);
-                controllableMixin.redraw.call(this, animation);
-            }
-        });
+                ControllableMixin.redraw.call(this, animation);
+            };
+            /* *
+             *
+             *  Static Properties
+             *
+             * */
+            /**
+             * A map object which allows to map options attributes to element attributes
+             *
+             * @type {Annotation.ControllableRect.AttrsMap}
+             */
+            ControllableRect.attrsMap = merge(ControllablePath.attrsMap, {
+                width: 'width',
+                height: 'height'
+            });
+            return ControllableRect;
+        }());
 
         return ControllableRect;
     });
-    _registerModule(_modules, 'annotations/controllable/ControllableCircle.js', [_modules['annotations/controllable/controllableMixin.js'], _modules['annotations/controllable/ControllablePath.js'], _modules['parts/Utilities.js']], function (controllableMixin, ControllablePath, U) {
+    _registerModule(_modules, 'annotations/controllable/ControllableCircle.js', [_modules['annotations/controllable/controllableMixin.js'], _modules['annotations/controllable/ControllablePath.js'], _modules['Core/Utilities.js']], function (ControllableMixin, ControllablePath, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -1685,45 +1756,65 @@
          * @requires modules/annotations
          *
          * @private
-         * @constructor
+         * @class
          * @name Highcharts.AnnotationControllableCircle
          *
          * @param {Highcharts.Annotation} annotation an annotation instance
          * @param {Highcharts.AnnotationsShapeOptions} options a shape's options
          * @param {number} index of the circle
-         **/
-        var ControllableCircle = function (annotation,
-            options,
-            index) {
-                this.init(annotation,
-            options,
-            index);
-            this.collection = 'shapes';
-        };
-        /**
-         * A map object which allows to map options attributes to element attributes.
-         *
-         * @name Highcharts.AnnotationControllableCircle.attrsMap
-         * @type {Highcharts.Dictionary<string>}
          */
-        ControllableCircle.attrsMap = merge(ControllablePath.attrsMap, {
-            r: 'r'
-        });
-        merge(true, ControllableCircle.prototype, controllableMixin, /** @lends Highcharts.AnnotationControllableCircle# */ {
-            /**
-             * @type 'circle'
-             */
-            type: 'circle',
-            translate: controllableMixin.translateShape,
-            render: function (parent) {
+        var ControllableCircle = /** @class */ (function () {
+                /* *
+                 *
+                 *  Constructors
+                 *
+                 * */
+                function ControllableCircle(annotation, options, index) {
+                    /* *
+                     *
+                     *  Properties
+                     *
+                     * */
+                    this.addControlPoints = ControllableMixin.addControlPoints;
+                this.anchor = ControllableMixin.anchor;
+                this.attr = ControllableMixin.attr;
+                this.attrsFromOptions = ControllableMixin.attrsFromOptions;
+                this.destroy = ControllableMixin.destroy;
+                this.getPointsOptions = ControllableMixin.getPointsOptions;
+                this.init = ControllableMixin.init;
+                this.linkPoints = ControllableMixin.linkPoints;
+                this.point = ControllableMixin.point;
+                this.rotate = ControllableMixin.rotate;
+                this.scale = ControllableMixin.scale;
+                this.setControlPointsVisibility = ControllableMixin.setControlPointsVisibility;
+                this.shouldBeDrawn = ControllableMixin.shouldBeDrawn;
+                this.transform = ControllableMixin.transform;
+                this.transformPoint = ControllableMixin.transformPoint;
+                this.translatePoint = ControllableMixin.translatePoint;
+                this.translateShape = ControllableMixin.translateShape;
+                this.update = ControllableMixin.update;
+                /**
+                 * @type 'circle'
+                 */
+                this.type = 'circle';
+                this.translate = ControllableMixin.translateShape;
+                this.init(annotation, options, index);
+                this.collection = 'shapes';
+            }
+            /* *
+             *
+             *  Functions
+             *
+             * */
+            ControllableCircle.prototype.render = function (parent) {
                 var attrs = this.attrsFromOptions(this.options);
                 this.graphic = this.annotation.chart.renderer
                     .circle(0, -9e9, 0)
                     .attr(attrs)
                     .add(parent);
-                controllableMixin.render.call(this);
-            },
-            redraw: function (animation) {
+                ControllableMixin.render.call(this);
+            };
+            ControllableCircle.prototype.redraw = function (animation) {
                 var position = this.anchor(this.points[0]).absolutePosition;
                 if (position) {
                     this.graphic[animation ? 'animate' : 'attr']({
@@ -1739,21 +1830,35 @@
                     });
                 }
                 this.graphic.placed = Boolean(position);
-                controllableMixin.redraw.call(this, animation);
-            },
+                ControllableMixin.redraw.call(this, animation);
+            };
             /**
              * Set the radius.
              *
              * @param {number} r a radius to be set
              */
-            setRadius: function (r) {
+            ControllableCircle.prototype.setRadius = function (r) {
                 this.options.r = r;
-            }
-        });
+            };
+            /* *
+             *
+             *  Static Properties
+             *
+             * */
+            /**
+             * A map object which allows to map options attributes to element
+             * attributes.
+             *
+             * @name Highcharts.AnnotationControllableCircle.attrsMap
+             * @type {Highcharts.Dictionary<string>}
+             */
+            ControllableCircle.attrsMap = merge(ControllablePath.attrsMap, { r: 'r' });
+            return ControllableCircle;
+        }());
 
         return ControllableCircle;
     });
-    _registerModule(_modules, 'annotations/controllable/ControllableLabel.js', [_modules['annotations/controllable/controllableMixin.js'], _modules['parts/Globals.js'], _modules['annotations/MockPoint.js'], _modules['parts/Tooltip.js'], _modules['parts/Utilities.js']], function (controllableMixin, H, MockPoint, Tooltip, U) {
+    _registerModule(_modules, 'annotations/controllable/ControllableLabel.js', [_modules['annotations/controllable/controllableMixin.js'], _modules['annotations/MockPoint.js'], _modules['parts/SVGRenderer.js'], _modules['parts/Tooltip.js'], _modules['Core/Utilities.js']], function (ControllableMixin, MockPoint, SVGRenderer, Tooltip, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -1762,7 +1867,6 @@
         var extend = U.extend,
             format = U.format,
             isNumber = U.isNumber,
-            merge = U.merge,
             pick = U.pick;
         /* eslint-disable no-invalid-this, valid-jsdoc */
         /**
@@ -1781,161 +1885,172 @@
          * @param {number} index
          * Index of the label.
          */
-        var ControllableLabel = function (annotation,
-            options,
-            index) {
-                this.init(annotation,
-            options,
-            index);
-            this.collection = 'labels';
-        };
-        /**
-         * Shapes which do not have background - the object is used for proper
-         * setting of the contrast color.
-         *
-         * @type {Array<string>}
-         */
-        ControllableLabel.shapesWithoutBackground = ['connector'];
-        /**
-         * Returns new aligned position based alignment options and box to align to.
-         * It is almost a one-to-one copy from SVGElement.prototype.align
-         * except it does not use and mutate an element
-         *
-         * @param {Highcharts.AnnotationAlignObject} alignOptions
-         *
-         * @param {Highcharts.BBoxObject} box
-         *
-         * @return {Highcharts.PositionObject}
-         * Aligned position.
-         */
-        ControllableLabel.alignedPosition = function (alignOptions, box) {
-            var align = alignOptions.align,
-                vAlign = alignOptions.verticalAlign,
-                x = (box.x || 0) + (alignOptions.x || 0),
-                y = (box.y || 0) + (alignOptions.y || 0),
-                alignFactor,
-                vAlignFactor;
-            if (align === 'right') {
-                alignFactor = 1;
+        var ControllableLabel = /** @class */ (function () {
+                /* *
+                 *
+                 *  Constructors
+                 *
+                 * */
+                function ControllableLabel(annotation, options, index) {
+                    /* *
+                     *
+                     *  Properties
+                     *
+                     * */
+                    this.addControlPoints = ControllableMixin.addControlPoints;
+                this.attr = ControllableMixin.attr;
+                this.attrsFromOptions = ControllableMixin.attrsFromOptions;
+                this.destroy = ControllableMixin.destroy;
+                this.getPointsOptions = ControllableMixin.getPointsOptions;
+                this.init = ControllableMixin.init;
+                this.linkPoints = ControllableMixin.linkPoints;
+                this.point = ControllableMixin.point;
+                this.rotate = ControllableMixin.rotate;
+                this.scale = ControllableMixin.scale;
+                this.setControlPointsVisibility = ControllableMixin.setControlPointsVisibility;
+                this.shouldBeDrawn = ControllableMixin.shouldBeDrawn;
+                this.transform = ControllableMixin.transform;
+                this.transformPoint = ControllableMixin.transformPoint;
+                this.translateShape = ControllableMixin.translateShape;
+                this.update = ControllableMixin.update;
+                this.init(annotation, options, index);
+                this.collection = 'labels';
             }
-            else if (align === 'center') {
-                alignFactor = 2;
-            }
-            if (alignFactor) {
-                x += (box.width - (alignOptions.width || 0)) / alignFactor;
-            }
-            if (vAlign === 'bottom') {
-                vAlignFactor = 1;
-            }
-            else if (vAlign === 'middle') {
-                vAlignFactor = 2;
-            }
-            if (vAlignFactor) {
-                y += (box.height - (alignOptions.height || 0)) / vAlignFactor;
-            }
-            return {
-                x: Math.round(x),
-                y: Math.round(y)
-            };
-        };
-        /**
-         * Returns new alignment options for a label if the label is outside the
-         * plot area. It is almost a one-to-one copy from
-         * Series.prototype.justifyDataLabel except it does not mutate the label and
-         * it works with absolute instead of relative position.
-         */
-        ControllableLabel.justifiedOptions = function (chart, label, alignOptions, alignAttr) {
-            var align = alignOptions.align,
-                verticalAlign = alignOptions.verticalAlign,
-                padding = label.box ? 0 : (label.padding || 0),
-                bBox = label.getBBox(),
-                off, 
-                //
-                options = {
-                    align: align,
-                    verticalAlign: verticalAlign,
-                    x: alignOptions.x,
-                    y: alignOptions.y,
-                    width: label.width,
-                    height: label.height
-                }, 
-                //
-                x = alignAttr.x - chart.plotLeft,
-                y = alignAttr.y - chart.plotTop;
-            // Off left
-            off = x + padding;
-            if (off < 0) {
+            /* *
+             *
+             *  Static Functions
+             *
+             * */
+            /**
+             * Returns new aligned position based alignment options and box to align to.
+             * It is almost a one-to-one copy from SVGElement.prototype.align
+             * except it does not use and mutate an element
+             *
+             * @param {Highcharts.AnnotationAlignObject} alignOptions
+             *
+             * @param {Highcharts.BBoxObject} box
+             *
+             * @return {Highcharts.PositionObject}
+             * Aligned position.
+             */
+            ControllableLabel.alignedPosition = function (alignOptions, box) {
+                var align = alignOptions.align,
+                    vAlign = alignOptions.verticalAlign,
+                    x = (box.x || 0) + (alignOptions.x || 0),
+                    y = (box.y || 0) + (alignOptions.y || 0),
+                    alignFactor,
+                    vAlignFactor;
                 if (align === 'right') {
-                    options.align = 'left';
+                    alignFactor = 1;
                 }
-                else {
-                    options.x = -off;
+                else if (align === 'center') {
+                    alignFactor = 2;
                 }
-            }
-            // Off right
-            off = x + bBox.width - padding;
-            if (off > chart.plotWidth) {
-                if (align === 'left') {
-                    options.align = 'right';
+                if (alignFactor) {
+                    x += (box.width - (alignOptions.width || 0)) / alignFactor;
                 }
-                else {
-                    options.x = chart.plotWidth - off;
+                if (vAlign === 'bottom') {
+                    vAlignFactor = 1;
                 }
-            }
-            // Off top
-            off = y + padding;
-            if (off < 0) {
-                if (verticalAlign === 'bottom') {
-                    options.verticalAlign = 'top';
+                else if (vAlign === 'middle') {
+                    vAlignFactor = 2;
                 }
-                else {
-                    options.y = -off;
+                if (vAlignFactor) {
+                    y += (box.height - (alignOptions.height || 0)) / vAlignFactor;
                 }
-            }
-            // Off bottom
-            off = y + bBox.height - padding;
-            if (off > chart.plotHeight) {
-                if (verticalAlign === 'top') {
-                    options.verticalAlign = 'bottom';
+                return {
+                    x: Math.round(x),
+                    y: Math.round(y)
+                };
+            };
+            /**
+             * Returns new alignment options for a label if the label is outside the
+             * plot area. It is almost a one-to-one copy from
+             * Series.prototype.justifyDataLabel except it does not mutate the label and
+             * it works with absolute instead of relative position.
+             */
+            ControllableLabel.justifiedOptions = function (chart, label, alignOptions, alignAttr) {
+                var align = alignOptions.align,
+                    verticalAlign = alignOptions.verticalAlign,
+                    padding = label.box ? 0 : (label.padding || 0),
+                    bBox = label.getBBox(),
+                    off, 
+                    //
+                    options = {
+                        align: align,
+                        verticalAlign: verticalAlign,
+                        x: alignOptions.x,
+                        y: alignOptions.y,
+                        width: label.width,
+                        height: label.height
+                    }, 
+                    //
+                    x = alignAttr.x - chart.plotLeft,
+                    y = alignAttr.y - chart.plotTop;
+                // Off left
+                off = x + padding;
+                if (off < 0) {
+                    if (align === 'right') {
+                        options.align = 'left';
+                    }
+                    else {
+                        options.x = -off;
+                    }
                 }
-                else {
-                    options.y = chart.plotHeight - off;
+                // Off right
+                off = x + bBox.width - padding;
+                if (off > chart.plotWidth) {
+                    if (align === 'left') {
+                        options.align = 'right';
+                    }
+                    else {
+                        options.x = chart.plotWidth - off;
+                    }
                 }
-            }
-            return options;
-        };
-        /**
-         * A map object which allows to map options attributes to element attributes
-         *
-         * @type {Highcharts.Dictionary<string>}
-         */
-        ControllableLabel.attrsMap = {
-            backgroundColor: 'fill',
-            borderColor: 'stroke',
-            borderWidth: 'stroke-width',
-            zIndex: 'zIndex',
-            borderRadius: 'r',
-            padding: 'padding'
-        };
-        merge(true, ControllableLabel.prototype, controllableMixin, 
-        /** @lends Annotation.ControllableLabel# */ {
+                // Off top
+                off = y + padding;
+                if (off < 0) {
+                    if (verticalAlign === 'bottom') {
+                        options.verticalAlign = 'top';
+                    }
+                    else {
+                        options.y = -off;
+                    }
+                }
+                // Off bottom
+                off = y + bBox.height - padding;
+                if (off > chart.plotHeight) {
+                    if (verticalAlign === 'top') {
+                        options.verticalAlign = 'bottom';
+                    }
+                    else {
+                        options.y = chart.plotHeight - off;
+                    }
+                }
+                return options;
+            };
+            /* *
+             *
+             *  Functions
+             *
+             * */
             /**
              * Translate the point of the label by deltaX and deltaY translations.
              * The point is the label's anchor.
              *
              * @param {number} dx translation for x coordinate
              * @param {number} dy translation for y coordinate
-             **/
-            translatePoint: function (dx, dy) {
-                controllableMixin.translatePoint.call(this, dx, dy, 0);
-            },
+             */
+            ControllableLabel.prototype.translatePoint = function (dx, dy) {
+                ControllableMixin.translatePoint.call(this, dx, dy, 0);
+            };
             /**
              * Translate x and y position relative to the label's anchor.
              *
              * @param {number} dx translation for x coordinate
              * @param {number} dy translation for y coordinate
-             **/
-            translate: function (dx, dy) {
+             */
+            ControllableLabel.prototype.translate = function (dx, dy) {
                 var chart = this.annotation.chart, 
                     // Annotation.options
                     labelOptions = this.annotation.userOptions, 
@@ -1957,8 +2072,8 @@
                 chartOptions[this.collection][this.index].y = this.options.y;
                 labelOptions[this.collection][this.index].x = this.options.x;
                 labelOptions[this.collection][this.index].y = this.options.y;
-            },
-            render: function (parent) {
+            };
+            ControllableLabel.prototype.render = function (parent) {
                 var options = this.options,
                     attrs = this.attrsFromOptions(options),
                     style = options.style;
@@ -1979,14 +2094,13 @@
                     this.graphic.addClass(options.className);
                 }
                 this.graphic.labelrank = options.labelrank;
-                controllableMixin.render.call(this);
-            },
-            redraw: function (animation) {
+                ControllableMixin.render.call(this);
+            };
+            ControllableLabel.prototype.redraw = function (animation) {
                 var options = this.options,
                     text = this.text || options.format || options.text,
                     label = this.graphic,
                     point = this.points[0],
-                    show = false,
                     anchor,
                     attrs;
                 label.attr({
@@ -1996,8 +2110,7 @@
                 });
                 anchor = this.anchor(point);
                 attrs = this.position(anchor);
-                show = attrs;
-                if (show) {
+                if (attrs) {
                     label.alignAttr = attrs;
                     attrs.anchorX = anchor.absolutePosition.x;
                     attrs.anchorY = anchor.absolutePosition.y;
@@ -2009,16 +2122,16 @@
                         y: -9999 // #10055
                     });
                 }
-                label.placed = Boolean(show);
-                controllableMixin.redraw.call(this, animation);
-            },
+                label.placed = !!attrs;
+                ControllableMixin.redraw.call(this, animation);
+            };
             /**
              * All basic shapes don't support alignTo() method except label.
              * For a controllable label, we need to subtract translation from
              * options.
              */
-            anchor: function () {
-                var anchor = controllableMixin.anchor.apply(this,
+            ControllableLabel.prototype.anchor = function (_point) {
+                var anchor = ControllableMixin.anchor.apply(this,
                     arguments),
                     x = this.options.x || 0,
                     y = this.options.y || 0;
@@ -2027,7 +2140,7 @@
                 anchor.relativePosition.x -= x;
                 anchor.relativePosition.y -= y;
                 return anchor;
-            },
+            };
             /**
              * Returns the label position relative to its anchor.
              *
@@ -2035,7 +2148,7 @@
              *
              * @return {Highcharts.PositionObject|null}
              */
-            position: function (anchor) {
+            ControllableLabel.prototype.position = function (anchor) {
                 var item = this.graphic,
                     chart = this.annotation.chart,
                     point = this.points[0],
@@ -2088,14 +2201,40 @@
                     }
                 }
                 return showItem ? itemPosition : null;
-            }
-        });
+            };
+            /* *
+             *
+             *  Static Properties
+             *
+             * */
+            /**
+             * A map object which allows to map options attributes to element attributes
+             *
+             * @type {Highcharts.Dictionary<string>}
+             */
+            ControllableLabel.attrsMap = {
+                backgroundColor: 'fill',
+                borderColor: 'stroke',
+                borderWidth: 'stroke-width',
+                zIndex: 'zIndex',
+                borderRadius: 'r',
+                padding: 'padding'
+            };
+            /**
+             * Shapes which do not have background - the object is used for proper
+             * setting of the contrast color.
+             *
+             * @type {Array<string>}
+             */
+            ControllableLabel.shapesWithoutBackground = ['connector'];
+            return ControllableLabel;
+        }());
         /* ********************************************************************** */
         /**
          * General symbol definition for labels with connector
          * @private
          */
-        H.SVGRenderer.prototype.symbols.connector = function (x, y, w, h, options) {
+        SVGRenderer.prototype.symbols.connector = function (x, y, w, h, options) {
             var anchorX = options && options.anchorX,
                 anchorY = options && options.anchorY,
                 path,
@@ -2133,13 +2272,12 @@
 
         return ControllableLabel;
     });
-    _registerModule(_modules, 'annotations/controllable/ControllableImage.js', [_modules['annotations/controllable/ControllableLabel.js'], _modules['annotations/controllable/controllableMixin.js'], _modules['parts/Utilities.js']], function (ControllableLabel, controllableMixin, U) {
+    _registerModule(_modules, 'annotations/controllable/ControllableImage.js', [_modules['annotations/controllable/ControllableLabel.js'], _modules['annotations/controllable/controllableMixin.js']], function (ControllableLabel, ControllableMixin) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
          *
          * */
-        var merge = U.merge;
         /* eslint-disable no-invalid-this, valid-jsdoc */
         /**
          * A controllable image class.
@@ -2158,33 +2296,46 @@
          *
          * @param {number} index
          * Index of the image.
-         **/
-        var ControllableImage = function (annotation,
-            options,
-            index) {
-                this.init(annotation,
-            options,
-            index);
-            this.collection = 'shapes';
-        };
-        /**
-         * A map object which allows to map options attributes to element attributes
-         *
-         * @name Highcharts.AnnotationControllableImage.attrsMap
-         * @type {Highcharts.Dictionary<string>}
          */
-        ControllableImage.attrsMap = {
-            width: 'width',
-            height: 'height',
-            zIndex: 'zIndex'
-        };
-        merge(true, ControllableImage.prototype, controllableMixin, /** @lends Annotation.ControllableImage# */ {
-            /**
-             * @type 'image'
-             */
-            type: 'image',
-            translate: controllableMixin.translateShape,
-            render: function (parent) {
+        var ControllableImage = /** @class */ (function () {
+                /* *
+                 *
+                 *  Constructors
+                 *
+                 * */
+                function ControllableImage(annotation, options, index) {
+                    /* *
+                     *
+                     *  Properties
+                     *
+                     * */
+                    this.addControlPoints = ControllableMixin.addControlPoints;
+                this.anchor = ControllableMixin.anchor;
+                this.attr = ControllableMixin.attr;
+                this.attrsFromOptions = ControllableMixin.attrsFromOptions;
+                this.destroy = ControllableMixin.destroy;
+                this.getPointsOptions = ControllableMixin.getPointsOptions;
+                this.init = ControllableMixin.init;
+                this.linkPoints = ControllableMixin.linkPoints;
+                this.point = ControllableMixin.point;
+                this.rotate = ControllableMixin.rotate;
+                this.scale = ControllableMixin.scale;
+                this.setControlPointsVisibility = ControllableMixin.setControlPointsVisibility;
+                this.shouldBeDrawn = ControllableMixin.shouldBeDrawn;
+                this.transform = ControllableMixin.transform;
+                this.transformPoint = ControllableMixin.transformPoint;
+                this.translatePoint = ControllableMixin.translatePoint;
+                this.translateShape = ControllableMixin.translateShape;
+                this.update = ControllableMixin.update;
+                /**
+                 * @type 'image'
+                 */
+                this.type = 'image';
+                this.translate = ControllableMixin.translateShape;
+                this.init(annotation, options, index);
+                this.collection = 'shapes';
+            }
+            ControllableImage.prototype.render = function (parent) {
                 var attrs = this.attrsFromOptions(this.options),
                     options = this.options;
                 this.graphic = this.annotation.chart.renderer
@@ -2193,9 +2344,9 @@
                     .add(parent);
                 this.graphic.width = options.width;
                 this.graphic.height = options.height;
-                controllableMixin.render.call(this);
-            },
-            redraw: function (animation) {
+                ControllableMixin.render.call(this);
+            };
+            ControllableImage.prototype.redraw = function (animation) {
                 var anchor = this.anchor(this.points[0]),
                     position = ControllableLabel.prototype.position.call(this,
                     anchor);
@@ -2212,13 +2363,30 @@
                     });
                 }
                 this.graphic.placed = Boolean(position);
-                controllableMixin.redraw.call(this, animation);
-            }
-        });
+                ControllableMixin.redraw.call(this, animation);
+            };
+            /* *
+             *
+             *  Static Properties
+             *
+             * */
+            /**
+             * A map object which allows to map options attributes to element attributes
+             *
+             * @name Highcharts.AnnotationControllableImage.attrsMap
+             * @type {Highcharts.Dictionary<string>}
+             */
+            ControllableImage.attrsMap = {
+                width: 'width',
+                height: 'height',
+                zIndex: 'zIndex'
+            };
+            return ControllableImage;
+        }());
 
         return ControllableImage;
     });
-    _registerModule(_modules, 'annotations/annotations.src.js', [_modules['parts/Chart.js'], _modules['annotations/controllable/controllableMixin.js'], _modules['annotations/controllable/ControllableRect.js'], _modules['annotations/controllable/ControllableCircle.js'], _modules['annotations/controllable/ControllablePath.js'], _modules['annotations/controllable/ControllableImage.js'], _modules['annotations/controllable/ControllableLabel.js'], _modules['annotations/ControlPoint.js'], _modules['annotations/eventEmitterMixin.js'], _modules['parts/Globals.js'], _modules['annotations/MockPoint.js'], _modules['parts/Pointer.js'], _modules['parts/Utilities.js']], function (Chart, ControllableMixin, ControllableRect, ControllableCircle, ControllablePath, ControllableImage, ControllableLabel, ControlPoint, EventEmitterMixin, H, MockPoint, Pointer, U) {
+    _registerModule(_modules, 'annotations/annotations.src.js', [_modules['parts/Chart.js'], _modules['annotations/controllable/controllableMixin.js'], _modules['annotations/controllable/ControllableRect.js'], _modules['annotations/controllable/ControllableCircle.js'], _modules['annotations/controllable/ControllablePath.js'], _modules['annotations/controllable/ControllableImage.js'], _modules['annotations/controllable/ControllableLabel.js'], _modules['annotations/ControlPoint.js'], _modules['annotations/eventEmitterMixin.js'], _modules['Core/Globals.js'], _modules['annotations/MockPoint.js'], _modules['parts/Pointer.js'], _modules['Core/Utilities.js']], function (Chart, ControllableMixin, ControllableRect, ControllableCircle, ControllablePath, ControllableImage, ControllableLabel, ControlPoint, EventEmitterMixin, H, MockPoint, Pointer, U) {
         /* *
          *
          *  (c) 2009-2017 Highsoft, Black Label
@@ -3470,7 +3638,7 @@
 
         return chartNavigation;
     });
-    _registerModule(_modules, 'annotations/navigationBindings.js', [_modules['annotations/annotations.src.js'], _modules['mixins/navigation.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (Annotation, chartNavigationMixin, H, U) {
+    _registerModule(_modules, 'annotations/navigationBindings.js', [_modules['annotations/annotations.src.js'], _modules['mixins/navigation.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (Annotation, chartNavigationMixin, H, U) {
         /* *
          *
          *  (c) 2009-2017 Highsoft, Black Label
@@ -3936,6 +4104,7 @@
                 function traverse(option, key, parentEditables, parent) {
                     var nextParent;
                     if (parentEditables &&
+                        option &&
                         nonEditables.indexOf(key) === -1 &&
                         ((parentEditables.indexOf &&
                             parentEditables.indexOf(key)) >= 0 ||
@@ -4136,7 +4305,7 @@
                 rect: ['shapes'],
                 // Crooked lines, elliots, arrows etc:
                 crookedLine: [],
-                basicAnnotation: []
+                basicAnnotation: ['shapes', 'labelOptions']
             };
             // Define non editable fields per annotation, for example Rectangle inherits
             // options from Measure, but crosshairs are not available
@@ -4566,7 +4735,7 @@
 
         return NavigationBindings;
     });
-    _registerModule(_modules, 'annotations/popup.js', [_modules['parts/Globals.js'], _modules['annotations/navigationBindings.js'], _modules['parts/Pointer.js'], _modules['parts/Utilities.js']], function (H, NavigationBindings, Pointer, U) {
+    _registerModule(_modules, 'annotations/popup.js', [_modules['Core/Globals.js'], _modules['annotations/navigationBindings.js'], _modules['parts/Pointer.js'], _modules['Core/Utilities.js']], function (H, NavigationBindings, Pointer, U) {
         /* *
          *
          *  Popup generator for Stock tools

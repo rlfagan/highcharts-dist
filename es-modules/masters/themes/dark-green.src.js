@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  * @module highcharts/themes/dark-green
  * @requires highcharts
  *

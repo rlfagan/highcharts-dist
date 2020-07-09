@@ -8,14 +8,15 @@
  *
  * */
 'use strict';
-import H from './Globals.js';
+import H from '../Core/Globals.js';
+import SVGRenderer from './SVGRenderer.js';
 import LegendSymbolMixin from '../mixins/legend-symbol.js';
 import Point from './Point.js';
-import U from './Utilities.js';
+import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, clamp = U.clamp, defined = U.defined, fireEvent = U.fireEvent, isNumber = U.isNumber, merge = U.merge, pick = U.pick, relativeLength = U.relativeLength, seriesType = U.seriesType, setAnimation = U.setAnimation;
 import './ColumnSeries.js';
 import '../mixins/centered-series.js';
-import './Options.js';
+import '../Core/Options.js';
 import './Series.js';
 var CenteredSeriesMixin = H.CenteredSeriesMixin, getStartAndEndRadians = CenteredSeriesMixin.getStartAndEndRadians, noop = H.noop, Series = H.Series, seriesTypes = H.seriesTypes;
 /**
@@ -786,7 +787,7 @@ seriesType('pie', 'line',
                     .add(this.group);
             }
             this.graph.attr({
-                d: Highcharts.SVGRenderer.prototype.symbols.arc(centerX, centerY, this.center[2] / 2, 0, {
+                d: SVGRenderer.prototype.symbols.arc(centerX, centerY, this.center[2] / 2, 0, {
                     start: start,
                     end: end,
                     innerR: this.center[3] / 2
@@ -1175,7 +1176,8 @@ seriesType('pie', 'line',
  * it is inherited from [chart.type](#chart.type).
  *
  * @extends   series,plotOptions.pie
- * @excluding dataParser, dataURL, stack, xAxis, yAxis, dataSorting, step
+ * @excluding cropThreshold, dataParser, dataURL, stack, xAxis, yAxis,
+ *            dataSorting, step
  * @product   highcharts
  * @apioption series.pie
  */

@@ -9,11 +9,11 @@
  * */
 'use strict';
 import Chart from '../parts/Chart.js';
-import Color from '../parts/Color.js';
+import Color from '../Core/Color.js';
 var color = Color.parse;
-import H from '../parts/Globals.js';
+import H from '../Core/Globals.js';
 import Point from '../parts/Point.js';
-import U from '../parts/Utilities.js';
+import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, clamp = U.clamp, defined = U.defined, extend = U.extend, extendClass = U.extendClass, fireEvent = U.fireEvent, isArray = U.isArray, isNumber = U.isNumber, merge = U.merge, pick = U.pick, seriesType = U.seriesType;
 /**
  * Formatter callback function.
@@ -50,7 +50,7 @@ var addEvent = U.addEvent, clamp = U.clamp, defined = U.defined, extend = U.exte
 * @type {string}
 * @since 7.0.0
 */
-import '../parts/Axis.js';
+import '../Core/Axis/Axis.js';
 import '../parts/Series.js';
 import '../modules/networkgraph/layouts.js';
 import '../modules/networkgraph/draggable-nodes.js';
@@ -207,9 +207,9 @@ seriesType('packedbubble', 'bubble',
  *         Split packed bubble chart
 
  * @extends      plotOptions.bubble
- * @excluding    connectEnds, connectNulls, dragDrop, jitter, keys,
- *               pointPlacement, sizeByAbsoluteValue, step, xAxis, yAxis,
- *               zMax, zMin, dataSorting
+ * @excluding    connectEnds, connectNulls, cropThreshold, dragDrop, jitter,
+ *               keys, pointPlacement, sizeByAbsoluteValue, step, xAxis,
+ *               yAxis, zMax, zMin, dataSorting
  * @product      highcharts
  * @since        7.0.0
  * @requires     highcharts-more
@@ -1284,7 +1284,7 @@ addEvent(Chart, 'beforeRedraw', function () {
  *
  * @type      {Object}
  * @extends   series,plotOptions.packedbubble
- * @excluding dataParser, dataSorting, dataURL, dragDrop, stack
+ * @excluding cropThreshold, dataParser, dataSorting, dataURL, dragDrop, stack
  * @product   highcharts
  * @requires  highcharts-more
  * @apioption series.packedbubble

@@ -1,11 +1,11 @@
 /*
- Highcharts JS v8.1.2 (2020-06-16)
+ Highcharts JS v8.1.2 (2020-07-09)
 
  (c) 2009-2019 Torstein Honsi
 
  License: www.highcharts.com/license
 */
-(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/modules/broken-axis",["highcharts"],function(h){c(h);c.Highcharts=h;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function h(c,v,m,h){c.hasOwnProperty(v)||(c[v]=h.apply(null,m))}c=c?c._modules:{};h(c,"modules/broken-axis.src.js",[c["parts/Axis.js"],c["parts/Globals.js"],c["parts/Utilities.js"],c["parts/Stacking.js"]],function(c,
+(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/modules/broken-axis",["highcharts"],function(h){c(h);c.Highcharts=h;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function h(c,v,m,h){c.hasOwnProperty(v)||(c[v]=h.apply(null,m))}c=c?c._modules:{};h(c,"modules/broken-axis.src.js",[c["Core/Axis/Axis.js"],c["Core/Globals.js"],c["Core/Utilities.js"],c["parts/Stacking.js"]],function(c,
 h,m,A){var q=m.addEvent,v=m.find,x=m.fireEvent,B=m.isArray,y=m.isNumber,r=m.pick,z=h.Series,C=function(){function l(b){this.hasBreaks=!1;this.axis=b}l.isInBreak=function(b,e){var d=b.repeat||Infinity,a=b.from,f=b.to-b.from;e=e>=a?(e-a)%d:d-(a-e)%d;return b.inclusive?e<=f:e<f&&0!==e};l.lin2Val=function(b){var e=this.brokenAxis;e=e&&e.breakArray;if(!e)return b;var d;for(d=0;d<e.length;d++){var a=e[d];if(a.from>=b)break;else a.to<b?b+=a.len:l.isInBreak(a,b)&&(b+=a.len)}return b};l.val2Lin=function(b){var e=
 this.brokenAxis;e=e&&e.breakArray;if(!e)return b;var d=b,a;for(a=0;a<e.length;a++){var f=e[a];if(f.to<=b)d-=f.len;else if(f.from>=b)break;else if(l.isInBreak(f,b)){d-=b-f.from;break}}return d};l.prototype.findBreakAt=function(b,e){return v(e,function(d){return d.from<b&&b<d.to})};l.prototype.isInAnyBreak=function(b,e){var d=this.axis,a=d.options.breaks,f=a&&a.length,k;if(f){for(;f--;)if(l.isInBreak(a[f],b)){var t=!0;k||(k=r(a[f].showPoints,!d.isXAxis))}var c=t&&e?t&&!k:t}return c};l.prototype.setBreaks=
 function(b,e){var d=this,a=d.axis,f=B(b)&&!!b.length;a.isDirty=d.hasBreaks!==f;d.hasBreaks=f;a.options.breaks=a.userOptions.breaks=b;a.forceRedraw=!0;a.series.forEach(function(a){a.isDirty=!0});f||a.val2lin!==l.val2Lin||(delete a.val2lin,delete a.lin2val);f&&(a.userOptions.ordinal=!1,a.lin2val=l.lin2Val,a.val2lin=l.val2Lin,a.setExtremes=function(a,b,f,g,e){if(d.hasBreaks){for(var k,t=this.options.breaks;k=d.findBreakAt(a,t);)a=k.to;for(;k=d.findBreakAt(b,t);)b=k.from;b<a&&(b=a)}c.prototype.setExtremes.call(this,

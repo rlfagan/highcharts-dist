@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Solid angular gauge module
  *
@@ -28,7 +28,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'modules/solid-gauge.src.js', [_modules['parts/Color.js'], _modules['parts/Globals.js'], _modules['mixins/legend-symbol.js'], _modules['parts/Utilities.js']], function (Color, H, LegendSymbolMixin, U) {
+    _registerModule(_modules, 'modules/solid-gauge.src.js', [_modules['Core/Color.js'], _modules['Core/Globals.js'], _modules['mixins/legend-symbol.js'], _modules['Core/Utilities.js']], function (Color, H, LegendSymbolMixin, U) {
         /* *
          *
          *  Solid angular gauge module

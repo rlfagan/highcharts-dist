@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v8.1.2 (2020-06-16)
+ * @license Highstock JS v8.1.2 (2020-07-09)
  *
  * Indicator series type for Highstock
  *
@@ -86,7 +86,7 @@
 
         return reduceArrayMixin;
     });
-    _registerModule(_modules, 'mixins/multipe-lines.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'mixins/multipe-lines.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /**
          *
          *  (c) 2010-2020 Wojciech Chmiel
@@ -275,7 +275,7 @@
 
         return multipleLinesMixin;
     });
-    _registerModule(_modules, 'indicators/price-channel.src.js', [_modules['parts/Utilities.js'], _modules['mixins/reduce-array.js'], _modules['mixins/multipe-lines.js']], function (U, reduceArrayMixin, multipleLinesMixin) {
+    _registerModule(_modules, 'indicators/price-channel.src.js', [_modules['Core/Utilities.js'], _modules['mixins/reduce-array.js'], _modules['mixins/multipe-lines.js']], function (U, reduceArrayMixin, multipleLinesMixin) {
         /* *
          *
          *  License: www.highcharts.com/license

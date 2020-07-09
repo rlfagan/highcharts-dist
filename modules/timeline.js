@@ -1,5 +1,5 @@
 /*
- Highcharts JS v8.1.2 (2020-06-16)
+ Highcharts JS v8.1.2 (2020-07-09)
 
  Timeline series
 
@@ -8,7 +8,7 @@
 
  License: www.highcharts.com/license
 */
-(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/modules/timeline",["highcharts"],function(l){c(l);c.Highcharts=l;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function l(c,l,q,r){c.hasOwnProperty(l)||(c[l]=r.apply(null,q))}c=c?c._modules:{};l(c,"modules/timeline.src.js",[c["parts/Globals.js"],c["mixins/legend-symbol.js"],c["parts/Point.js"],c["parts/SVGElement.js"],c["parts/Utilities.js"]],
+(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/modules/timeline",["highcharts"],function(l){c(l);c.Highcharts=l;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function l(c,l,q,r){c.hasOwnProperty(l)||(c[l]=r.apply(null,q))}c=c?c._modules:{};l(c,"modules/timeline.src.js",[c["Core/Globals.js"],c["mixins/legend-symbol.js"],c["parts/Point.js"],c["parts/SVGElement.js"],c["Core/Utilities.js"]],
 function(c,l,q,r,f){var p=f.addEvent,x=f.arrayMax,y=f.arrayMin,u=f.defined,z=f.isNumber,t=f.merge,A=f.objectEach,n=f.pick;f=f.seriesType;var m=c.Series,v=c.seriesTypes;f("timeline","line",{colorByPoint:!0,stickyTracking:!1,ignoreHiddenPoint:!0,legendType:"point",lineWidth:4,tooltip:{headerFormat:'<span style="color:{point.color}">\u25cf</span> <span style="font-size: 10px"> {point.key}</span><br/>',pointFormat:"{point.description}"},states:{hover:{lineWidthPlus:0}},dataLabels:{enabled:!0,allowOverlap:!0,
 alternate:!0,backgroundColor:"#ffffff",borderWidth:1,borderColor:"#999999",borderRadius:3,color:"#333333",connectorWidth:1,distance:100,formatter:function(){var a=this.series.chart.styledMode?"<span>\u25cf </span>":'<span style="color:'+this.point.color+'">\u25cf </span>';return a+='<span class="highcharts-strong">'+(this.key||"")+"</span><br/>"+(this.point.label||"")},style:{textOutline:"none",fontWeight:"normal",fontSize:"12px"},shadow:!1,verticalAlign:"middle"},marker:{enabledThreshold:0,symbol:"square",
 radius:6,lineWidth:2,height:15},showInLegend:!1,colorKey:"x"},{trackerGroups:["markerGroup","dataLabelsGroup"],drawLegendSymbol:l.drawRectangle,drawTracker:c.TrackerMixin.drawTrackerPoint,init:function(){var a=this;m.prototype.init.apply(a,arguments);p(a,"afterTranslate",function(){var b,k=Number.MAX_VALUE;a.points.forEach(function(a){a.isInside=a.isInside&&a.visible;a.visible&&!a.isNull&&(u(b)&&(k=Math.min(k,Math.abs(a.plotX-b))),b=a.plotX)});a.closestPointRangePx=k});p(a,"drawDataLabels",function(){a.distributeDL()});

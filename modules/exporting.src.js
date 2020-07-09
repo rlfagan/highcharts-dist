@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Exporting module
  *
@@ -28,7 +28,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'modules/full-screen.src.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (Chart, H, U) {
+    _registerModule(_modules, 'modules/full-screen.src.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (Chart, H, U) {
         /* *
          * (c) 2009-2020 Rafal Sebestjanski
          *
@@ -304,7 +304,7 @@
 
         return chartNavigation;
     });
-    _registerModule(_modules, 'modules/exporting.src.js', [_modules['parts/Chart.js'], _modules['mixins/navigation.js'], _modules['parts/Globals.js'], _modules['parts/Options.js'], _modules['parts/SVGRenderer.js'], _modules['parts/Utilities.js']], function (Chart, chartNavigationMixin, H, O, SVGRenderer, U) {
+    _registerModule(_modules, 'modules/exporting.src.js', [_modules['parts/Chart.js'], _modules['mixins/navigation.js'], _modules['Core/Globals.js'], _modules['Core/Options.js'], _modules['parts/SVGRenderer.js'], _modules['Core/Utilities.js']], function (Chart, chartNavigationMixin, H, O, SVGRenderer, U) {
         /* *
          *
          *  Exporting module
@@ -1311,7 +1311,8 @@
                             'width="' + options.chart.width + '" ' +
                             'height="' + options.chart.height + '">' +
                             '<body xmlns="http://www.w3.org/1999/xhtml">' +
-                            html +
+                            // Some tags needs to be closed in xhtml (#13726)
+                            html.replace(/(<(?:img|br).*?(?=\>))>/g, '$1 />') +
                             '</body>' +
                             '</foreignObject>';
                         svg = svg.replace('</svg>', html + '</svg>');

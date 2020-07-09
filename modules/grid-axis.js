@@ -1,5 +1,5 @@
 /*
- Highcharts Gantt JS v8.1.2 (2020-06-16)
+ Highcharts Gantt JS v8.1.2 (2020-07-09)
 
  GridAxis
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(d){"object"===typeof module&&module.exports?(d["default"]=d,module.exports=d):"function"===typeof define&&define.amd?define("highcharts/modules/grid-axis",["highcharts"],function(n){d(n);d.Highcharts=n;return d}):d("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(d){function n(d,x,n,B){d.hasOwnProperty(x)||(d[x]=B.apply(null,n))}d=d?d._modules:{};n(d,"parts-gantt/GridAxis.js",[d["parts/Axis.js"],d["parts/Globals.js"],d["parts/Options.js"],d["parts/Tick.js"],d["parts/Utilities.js"]],
+(function(d){"object"===typeof module&&module.exports?(d["default"]=d,module.exports=d):"function"===typeof define&&define.amd?define("highcharts/modules/grid-axis",["highcharts"],function(n){d(n);d.Highcharts=n;return d}):d("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(d){function n(d,x,n,B){d.hasOwnProperty(x)||(d[x]=B.apply(null,n))}d=d?d._modules:{};n(d,"parts-gantt/GridAxis.js",[d["Core/Axis/Axis.js"],d["Core/Globals.js"],d["Core/Options.js"],d["Core/Axis/Tick.js"],d["Core/Utilities.js"]],
 function(d,n,A,B,l){var x=A.dateFormat,f=l.addEvent,p=l.defined,C=l.erase,E=l.find,F=l.isArray,v=l.isNumber,y=l.merge,z=l.pick,G=l.timeUnits,D=l.wrap;A=n.Chart;var H=function(b){var a=b.options;a.labels||(a.labels={});a.labels.align=z(a.labels.align,"center");b.categories||(a.showLastLabel=!1);b.labelRotation=0;a.labels.rotation=0};"";d.prototype.getMaxLabelDimensions=function(b,a){var c={width:0,height:0};a.forEach(function(a){a=b[a];if(l.isObject(a,!0)){var e=l.isObject(a.label,!0)?a.label:{};a=
 e.getBBox?e.getBBox().height:0;e.textStr&&!v(e.textPxLength)&&(e.textPxLength=e.getBBox().width);e=v(e.textPxLength)?Math.round(e.textPxLength):0;c.height=Math.max(a,c.height);c.width=Math.max(e,c.width)}});return c};n.dateFormats.W=function(b){b=new this.Date(b);var a=(this.get("Day",b)+6)%7,c=new this.Date(b.valueOf());this.set("Date",c,this.get("Date",b)-a+3);a=new this.Date(this.get("FullYear",c),0,1);4!==this.get("Day",a)&&(this.set("Month",b,0),this.set("Date",b,1+(11-this.get("Day",a))%7));
 return(1+Math.floor((c.valueOf()-a.valueOf())/6048E5)).toString()};n.dateFormats.E=function(b){return x("%a",b,!0).charAt(0)};f(A,"afterSetChartSize",function(){this.axes.forEach(function(b){(b.grid&&b.grid.columns||[]).forEach(function(a){a.setAxisSize();a.setAxisTranslation()})})});f(B,"afterGetLabelPosition",function(b){var a=this.label,c=this.axis,m=c.reversed,e=c.chart,k=c.options.grid||{},g=c.options.labels,u=g.align,h=w.Side[c.side],d=b.tickmarkOffset,r=c.tickPositions,q=this.pos-d;r=v(r[b.index+

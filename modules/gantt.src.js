@@ -1,5 +1,5 @@
 /**
- * @license Highcharts Gantt JS v8.1.2 (2020-06-16)
+ * @license Highcharts Gantt JS v8.1.2 (2020-07-09)
  *
  * Gantt series
  *
@@ -28,7 +28,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'parts-gantt/Tree.js', [_modules['parts/Utilities.js']], function (U) {
+    _registerModule(_modules, 'parts-gantt/Tree.js', [_modules['Core/Utilities.js']], function (U) {
         /* *
          *
          *  (c) 2016-2020 Highsoft AS
@@ -162,7 +162,7 @@
 
         return Tree;
     });
-    _registerModule(_modules, 'parts-gantt/TreeGridTick.js', [_modules['parts/Utilities.js']], function (U) {
+    _registerModule(_modules, 'parts-gantt/TreeGridTick.js', [_modules['Core/Utilities.js']], function (U) {
         /* *
          *
          *  (c) 2016 Highsoft AS
@@ -515,7 +515,7 @@
 
         return TreeGridTick;
     });
-    _registerModule(_modules, 'mixins/tree-series.js', [_modules['parts/Color.js'], _modules['parts/Utilities.js']], function (Color, U) {
+    _registerModule(_modules, 'mixins/tree-series.js', [_modules['Core/Color.js'], _modules['Core/Utilities.js']], function (Color, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -743,7 +743,7 @@
 
         return result;
     });
-    _registerModule(_modules, 'parts-gantt/GridAxis.js', [_modules['parts/Axis.js'], _modules['parts/Globals.js'], _modules['parts/Options.js'], _modules['parts/Tick.js'], _modules['parts/Utilities.js']], function (Axis, H, O, Tick, U) {
+    _registerModule(_modules, 'parts-gantt/GridAxis.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Globals.js'], _modules['Core/Options.js'], _modules['Core/Axis/Tick.js'], _modules['Core/Utilities.js']], function (Axis, H, O, Tick, U) {
         /* *
          *
          *  (c) 2016 Highsoft AS
@@ -1658,7 +1658,7 @@
 
         return GridAxis;
     });
-    _registerModule(_modules, 'modules/broken-axis.src.js', [_modules['parts/Axis.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['parts/Stacking.js']], function (Axis, H, U, StackItem) {
+    _registerModule(_modules, 'modules/broken-axis.src.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['parts/Stacking.js']], function (Axis, H, U, StackItem) {
         /* *
          *
          *  (c) 2009-2020 Torstein Honsi
@@ -2238,7 +2238,7 @@
 
         return BrokenAxis;
     });
-    _registerModule(_modules, 'parts-gantt/TreeGridAxis.js', [_modules['parts/Axis.js'], _modules['parts/Tick.js'], _modules['parts-gantt/Tree.js'], _modules['parts-gantt/TreeGridTick.js'], _modules['mixins/tree-series.js'], _modules['parts/Utilities.js']], function (Axis, Tick, Tree, TreeGridTick, TreeSeriesMixin, U) {
+    _registerModule(_modules, 'parts-gantt/TreeGridAxis.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Axis/Tick.js'], _modules['parts-gantt/Tree.js'], _modules['parts-gantt/TreeGridTick.js'], _modules['mixins/tree-series.js'], _modules['Core/Utilities.js']], function (Axis, Tick, Tree, TreeGridTick, TreeSeriesMixin, U) {
         /* *
          *
          *  (c) 2016 Highsoft AS
@@ -2960,7 +2960,7 @@
 
         return TreeGridAxis;
     });
-    _registerModule(_modules, 'parts-gantt/CurrentDateIndicator.js', [_modules['parts/Globals.js'], _modules['parts/Options.js'], _modules['parts/Utilities.js'], _modules['parts/PlotLineOrBand.js']], function (H, O, U, PlotLineOrBand) {
+    _registerModule(_modules, 'parts-gantt/CurrentDateIndicator.js', [_modules['Core/Globals.js'], _modules['Core/Options.js'], _modules['Core/Utilities.js'], _modules['Core/Axis/PlotLineOrBand.js']], function (H, O, U, PlotLineOrBand) {
         /* *
          *
          *  (c) 2016-2020 Highsoft AS
@@ -3060,7 +3060,7 @@
         });
 
     });
-    _registerModule(_modules, 'modules/static-scale.src.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'modules/static-scale.src.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2016-2020 Torstein Honsi, Lars Cabrera
@@ -3141,7 +3141,7 @@
         addEvent(Chart, 'render', Chart.prototype.adjustHeight);
 
     });
-    _registerModule(_modules, 'parts-gantt/PathfinderAlgorithms.js', [_modules['parts/Utilities.js']], function (U) {
+    _registerModule(_modules, 'parts-gantt/PathfinderAlgorithms.js', [_modules['Core/Utilities.js']], function (U) {
         /* *
          *
          *  (c) 2016 Highsoft AS
@@ -4061,7 +4061,7 @@
         SVGRenderer.prototype.symbols['arrow-filled-half'] = SVGRenderer.prototype.symbols['triangle-left-half'];
 
     });
-    _registerModule(_modules, 'parts-gantt/Pathfinder.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Options.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js'], _modules['parts-gantt/PathfinderAlgorithms.js']], function (Chart, H, O, Point, U, pathfinderAlgorithms) {
+    _registerModule(_modules, 'parts-gantt/Pathfinder.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Options.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js'], _modules['parts-gantt/PathfinderAlgorithms.js']], function (Chart, H, O, Point, U, pathfinderAlgorithms) {
         /* *
          *
          *  (c) 2016 Highsoft AS
@@ -5221,7 +5221,7 @@
         });
 
     });
-    _registerModule(_modules, 'modules/xrange.src.js', [_modules['parts/Axis.js'], _modules['parts/Globals.js'], _modules['parts/Color.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js']], function (Axis, H, Color, Point, U) {
+    _registerModule(_modules, 'modules/xrange.src.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Globals.js'], _modules['Core/Color.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js']], function (Axis, H, Color, Point, U) {
         /* *
          *
          *  X-range series module
@@ -5962,7 +5962,7 @@
         ''; // adds doclets above to transpiled file
 
     });
-    _registerModule(_modules, 'parts-gantt/GanttSeries.js', [_modules['parts/Globals.js'], _modules['parts/Options.js'], _modules['parts/Utilities.js']], function (H, O, U) {
+    _registerModule(_modules, 'parts-gantt/GanttSeries.js', [_modules['Core/Globals.js'], _modules['Core/Options.js'], _modules['Core/Utilities.js']], function (H, O, U) {
         /* *
          *
          *  (c) 2016-2020 Highsoft AS
@@ -6336,7 +6336,7 @@
         ''; // adds doclets above to the transpiled file
 
     });
-    _registerModule(_modules, 'parts-gantt/GanttChart.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (Chart, H, U) {
+    _registerModule(_modules, 'parts-gantt/GanttChart.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (Chart, H, U) {
         /* *
          *
          *  (c) 2016-2020 Highsoft AS
@@ -6456,7 +6456,7 @@
         };
 
     });
-    _registerModule(_modules, 'parts/ScrollbarAxis.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'Core/Axis/ScrollbarAxis.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -6641,7 +6641,7 @@
 
         return ScrollbarAxis;
     });
-    _registerModule(_modules, 'parts/Scrollbar.js', [_modules['parts/Axis.js'], _modules['parts/Globals.js'], _modules['parts/ScrollbarAxis.js'], _modules['parts/Utilities.js'], _modules['parts/Options.js']], function (Axis, H, ScrollbarAxis, U, O) {
+    _registerModule(_modules, 'Core/Scrollbar.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Globals.js'], _modules['Core/Axis/ScrollbarAxis.js'], _modules['Core/Utilities.js'], _modules['Core/Options.js']], function (Axis, H, ScrollbarAxis, U, O) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -7505,7 +7505,7 @@
 
         return H.Scrollbar;
     });
-    _registerModule(_modules, 'parts/RangeSelector.js', [_modules['parts/Axis.js'], _modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Options.js'], _modules['parts/SVGElement.js'], _modules['parts/Utilities.js']], function (Axis, Chart, H, O, SVGElement, U) {
+    _registerModule(_modules, 'parts/RangeSelector.js', [_modules['Core/Axis/Axis.js'], _modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Options.js'], _modules['parts/SVGElement.js'], _modules['Core/Utilities.js']], function (Axis, Chart, H, O, SVGElement, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -7864,6 +7864,8 @@
                 /**
                  * A custom callback function to parse values entered in the input boxes
                  * and return a valid JavaScript time as milliseconds since 1970.
+                 * The first argument passed is a value to parse,
+                 * second is a boolean indicating use of the UTC time.
                  *
                  * @sample {highstock} stock/rangeselector/input-format/
                  *         Milliseconds in the range selector
@@ -8439,6 +8441,20 @@
                 this.setInputValue(name);
             };
             /**
+             * @private
+             * @function Highcharts.RangeSelector#defaultInputDateParser
+             */
+            RangeSelector.prototype.defaultInputDateParser = function (inputDate, useUTC) {
+                var date = new Date();
+                if (H.isSafari) {
+                    return Date.parse(inputDate.split(' ').join('T'));
+                }
+                if (useUTC) {
+                    return Date.parse(inputDate + 'Z');
+                }
+                return Date.parse(inputDate) - date.getTimezoneOffset() * 60 * 1000;
+            };
+            /**
              * Draw either the 'from' or the 'to' HTML input box of the range selector
              *
              * @private
@@ -8458,19 +8474,21 @@
                     input,
                     label,
                     dateBox,
-                    inputGroup = this.inputGroup;
+                    inputGroup = this.inputGroup,
+                    defaultInputDateParser = this.defaultInputDateParser;
                 /**
                  * @private
                  */
                 function updateExtremes() {
                     var inputValue = input.value,
-                        value = (options.inputDateParser || Date.parse)(inputValue),
+                        value,
                         chartAxis = chart.xAxis[0],
                         dataAxis = chart.scroller && chart.scroller.xAxis ?
                             chart.scroller.xAxis :
                             chartAxis,
                         dataMin = dataAxis.dataMin,
                         dataMax = dataAxis.dataMax;
+                    value = (options.inputDateParser || defaultInputDateParser)(inputValue, chart.time.useUTC);
                     if (value !== input.previousValue) {
                         input.previousValue = value;
                         // If the value isn't parsed directly to a value by the
@@ -9274,7 +9292,7 @@
 
         return H.RangeSelector;
     });
-    _registerModule(_modules, 'parts/NavigatorAxis.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'Core/Axis/NavigatorAxis.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -9450,7 +9468,7 @@
 
         return NavigatorAxis;
     });
-    _registerModule(_modules, 'parts/Navigator.js', [_modules['parts/Axis.js'], _modules['parts/Chart.js'], _modules['parts/Color.js'], _modules['parts/Globals.js'], _modules['parts/NavigatorAxis.js'], _modules['parts/Options.js'], _modules['parts/Scrollbar.js'], _modules['parts/Utilities.js']], function (Axis, Chart, Color, H, NavigatorAxis, O, Scrollbar, U) {
+    _registerModule(_modules, 'Core/Navigator.js', [_modules['Core/Axis/Axis.js'], _modules['parts/Chart.js'], _modules['Core/Color.js'], _modules['Core/Globals.js'], _modules['Core/Axis/NavigatorAxis.js'], _modules['Core/Options.js'], _modules['Core/Scrollbar.js'], _modules['Core/Utilities.js']], function (Axis, Chart, Color, H, NavigatorAxis, O, Scrollbar, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi

@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v8.1.2 (2020-06-16)
+ * @license Highstock JS v8.1.2 (2020-07-09)
  * @module highcharts/indicators/keltner-channels
  * @requires highcharts
  * @requires highcharts/modules/stock

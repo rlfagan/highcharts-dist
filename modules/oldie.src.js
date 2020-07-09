@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Old IE (v6, v7, v8) module for Highcharts v6+.
  *
@@ -29,7 +29,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'modules/oldie.src.js', [_modules['parts/Chart.js'], _modules['parts/Color.js'], _modules['parts/Globals.js'], _modules['parts/Pointer.js'], _modules['parts/SVGElement.js'], _modules['parts/SVGRenderer.js'], _modules['parts/Utilities.js']], function (Chart, Color, H, Pointer, SVGElement, SVGRenderer, U) {
+    _registerModule(_modules, 'modules/oldie.src.js', [_modules['parts/Chart.js'], _modules['Core/Color.js'], _modules['Core/Globals.js'], _modules['parts/Pointer.js'], _modules['parts/SVGElement.js'], _modules['parts/SVGRenderer.js'], _modules['Core/Utilities.js']], function (Chart, Color, H, Pointer, SVGElement, SVGRenderer, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi

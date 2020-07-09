@@ -9,12 +9,12 @@
  *
  * */
 'use strict';
-import Axis from '../parts/Axis.js';
-import Tick from '../parts/Tick.js';
+import Axis from '../Core/Axis/Axis.js';
+import Tick from '../Core/Axis/Tick.js';
 import Tree from './Tree.js';
 import TreeGridTick from './TreeGridTick.js';
 import TreeSeriesMixin from '../mixins/tree-series.js';
-import U from '../parts/Utilities.js';
+import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, find = U.find, fireEvent = U.fireEvent, isNumber = U.isNumber, isObject = U.isObject, isString = U.isString, merge = U.merge, pick = U.pick, wrap = U.wrap;
 import './GridAxis.js';
 import '../modules/broken-axis.src.js';

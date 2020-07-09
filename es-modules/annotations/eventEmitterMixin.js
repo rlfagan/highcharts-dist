@@ -3,9 +3,9 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
-import H from '../parts/Globals.js';
-import U from '../parts/Utilities.js';
-var addEvent = U.addEvent, fireEvent = U.fireEvent, inArray = U.inArray, objectEach = U.objectEach, pick = U.pick, removeEvent = U.removeEvent;
+import H from '../Core/Globals.js';
+import U from '../Core/Utilities.js';
+var addEvent = U.addEvent, fireEvent = U.fireEvent, objectEach = U.objectEach, pick = U.pick, removeEvent = U.removeEvent;
 /* eslint-disable valid-jsdoc */
 /**
  * It provides methods for:
@@ -41,7 +41,7 @@ var eventEmitterMixin = {
                     event.call(emitter, emitter.chart.pointer.normalize(e), emitter.target);
                 }
             };
-            if (inArray(type, emitter.nonDOMEvents || []) === -1) {
+            if ((emitter.nonDOMEvents || []).indexOf(type) === -1) {
                 emitter.graphic.on(type, eventHandler);
             }
             else {

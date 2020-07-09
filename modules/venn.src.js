@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * (c) 2017-2019 Highsoft AS
  * Authors: Jon Arild Nygard
@@ -676,7 +676,7 @@
 
         return content;
     });
-    _registerModule(_modules, 'modules/venn.src.js', [_modules['parts/Color.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['mixins/draw-point.js'], _modules['mixins/geometry.js'], _modules['mixins/geometry-circles.js'], _modules['mixins/nelder-mead.js']], function (Color, H, U, draw, geometry, geometryCirclesModule, nelderMeadModule) {
+    _registerModule(_modules, 'modules/venn.src.js', [_modules['Core/Color.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['mixins/draw-point.js'], _modules['mixins/geometry.js'], _modules['mixins/geometry-circles.js'], _modules['mixins/nelder-mead.js']], function (Color, H, U, draw, geometry, geometryCirclesModule, nelderMeadModule) {
         /* *
          *
          *  Experimental Highcharts module which enables visualization of a Venn

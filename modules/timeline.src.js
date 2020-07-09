@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Timeline series
  *
@@ -29,7 +29,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'modules/timeline.src.js', [_modules['parts/Globals.js'], _modules['mixins/legend-symbol.js'], _modules['parts/Point.js'], _modules['parts/SVGElement.js'], _modules['parts/Utilities.js']], function (H, LegendSymbolMixin, Point, SVGElement, U) {
+    _registerModule(_modules, 'modules/timeline.src.js', [_modules['Core/Globals.js'], _modules['mixins/legend-symbol.js'], _modules['parts/Point.js'], _modules['parts/SVGElement.js'], _modules['Core/Utilities.js']], function (H, LegendSymbolMixin, Point, SVGElement, U) {
         /* *
          *
          *  Timeline Series.

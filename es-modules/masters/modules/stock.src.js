@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v8.1.2 (2020-06-16)
+ * @license Highstock JS v8.1.2 (2020-07-09)
  * @module highcharts/modules/stock
  * @requires highcharts
  *
@@ -10,13 +10,13 @@
  * License: www.highcharts.com/license
  */
 'use strict';
-import '../../parts/OrdinalAxis.js';
+import '../../Core/Axis/OrdinalAxis.js';
 import './broken-axis.src.js';
 import '../../parts/DataGrouping.js';
 import '../../parts/OHLCSeries.js';
 import '../../parts/CandlestickSeries.js';
 import '../../parts/FlagsSeries.js';
-import '../../parts/Scrollbar.js';
-import '../../parts/Navigator.js';
+import '../../Core/Scrollbar.js';
+import '../../Core/Navigator.js';
 import '../../parts/RangeSelector.js';
 import '../../parts/StockChart.js';

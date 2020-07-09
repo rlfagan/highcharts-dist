@@ -1,5 +1,5 @@
 /*
- Highstock JS v8.1.2 (2020-06-16)
+ Highstock JS v8.1.2 (2020-07-09)
 
  Indicator series type for Highstock
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define("highcharts/indicators/macd",["highcharts","highcharts/modules/stock"],function(g){b(g);b.Highcharts=g;return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){function g(b,e,g,k){b.hasOwnProperty(e)||(b[e]=k.apply(null,g))}b=b?b._modules:{};g(b,"indicators/macd.src.js",[b["parts/Globals.js"],b["parts/Utilities.js"]],function(b,e){var g=e.correctFloat,
+(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define("highcharts/indicators/macd",["highcharts","highcharts/modules/stock"],function(g){b(g);b.Highcharts=g;return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){function g(b,e,g,k){b.hasOwnProperty(e)||(b[e]=k.apply(null,g))}b=b?b._modules:{};g(b,"indicators/macd.src.js",[b["Core/Globals.js"],b["Core/Utilities.js"]],function(b,e){var g=e.correctFloat,
 k=e.defined,q=e.merge;e=e.seriesType;var m=b.seriesTypes.sma,n=b.seriesTypes.ema;e("macd","sma",{params:{shortPeriod:12,longPeriod:26,signalPeriod:9,period:26},signalLine:{zones:[],styles:{lineWidth:1,lineColor:void 0}},macdLine:{zones:[],styles:{lineWidth:1,lineColor:void 0}},threshold:0,groupPadding:.1,pointPadding:.1,crisp:!1,states:{hover:{halo:{size:0}}},tooltip:{pointFormat:'<span style="color:{point.color}">\u25cf</span> <b> {series.name}</b><br/>Value: {point.MACD}<br/>Signal: {point.signal}<br/>Histogram: {point.y}<br/>'},
 dataGrouping:{approximation:"averages"},minPointLength:0},{nameComponents:["longPeriod","shortPeriod","signalPeriod"],requiredIndicators:["ema"],pointArrayMap:["y","signal","MACD"],parallelArrays:["x","y","signal","MACD"],pointValKey:"y",markerAttribs:b.noop,getColumnMetrics:b.seriesTypes.column.prototype.getColumnMetrics,crispCol:b.seriesTypes.column.prototype.crispCol,init:function(){m.prototype.init.apply(this,arguments);this.options&&(this.options=q({signalLine:{styles:{lineColor:this.color}},
 macdLine:{styles:{color:this.color}}},this.options),this.macdZones={zones:this.options.macdLine.zones,startIndex:0},this.signalZones={zones:this.macdZones.zones.concat(this.options.signalLine.zones),startIndex:this.macdZones.zones.length},this.resetZones=!0)},toYData:function(a){return[a.y,a.signal,a.MACD]},translate:function(){var a=this,p=["plotSignal","plotMACD"];b.seriesTypes.column.prototype.translate.apply(a);a.points.forEach(function(b){[b.signal,b.MACD].forEach(function(c,d){null!==c&&(b[p[d]]=

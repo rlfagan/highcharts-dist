@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * (c) 2009-2018 Torstein Honsi
  *
@@ -29,7 +29,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'parts/Globals.js', [], function () {
+    _registerModule(_modules, 'Core/Globals.js', [], function () {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -82,6 +82,14 @@
                 marginNames: ['plotTop', 'marginRight', 'marginBottom', 'plotLeft'],
                 noop: function () { },
                 /**
+                 * Theme options that should get applied to the chart. In module mode it
+                 * might not be possible to change this property because of read-only
+                 * restrictions, instead use {@link Highcharts.setOptions}.
+                 *
+                 * @name Highcharts.theme
+                 * @type {Highcharts.Options}
+                 */
+                /**
                  * An array containing the current chart objects in the page. A chart's
                  * position in the array is preserved throughout the page's lifetime. When
                  * a chart is destroyed, the array item becomes `undefined`.
@@ -108,7 +116,7 @@
 
         return H;
     });
-    _registerModule(_modules, 'parts/Utilities.js', [_modules['parts/Globals.js']], function (H) {
+    _registerModule(_modules, 'Core/Utilities.js', [_modules['Core/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -2883,7 +2891,7 @@
 
         return utilitiesModule;
     });
-    _registerModule(_modules, 'parts/Color.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'Core/Color.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -3300,7 +3308,7 @@
 
         return H.Color;
     });
-    _registerModule(_modules, 'parts/SVGElement.js', [_modules['parts/Color.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (Color, H, U) {
+    _registerModule(_modules, 'parts/SVGElement.js', [_modules['Core/Color.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (Color, H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -3327,7 +3335,6 @@
             erase = U.erase,
             extend = U.extend,
             fireEvent = U.fireEvent,
-            inArray = U.inArray,
             isArray = U.isArray,
             isFunction = U.isFunction,
             isNumber = U.isNumber,
@@ -5617,7 +5624,7 @@
 
         return H.SVGElement;
     });
-    _registerModule(_modules, 'parts/SVGLabel.js', [_modules['parts/SVGElement.js'], _modules['parts/Utilities.js']], function (SVGElement, U) {
+    _registerModule(_modules, 'parts/SVGLabel.js', [_modules['parts/SVGElement.js'], _modules['Core/Utilities.js']], function (SVGElement, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -6039,7 +6046,7 @@
 
         return SVGLabel;
     });
-    _registerModule(_modules, 'parts/SVGRenderer.js', [_modules['parts/Color.js'], _modules['parts/Globals.js'], _modules['parts/SVGElement.js'], _modules['parts/SVGLabel.js'], _modules['parts/Utilities.js']], function (Color, H, SVGElement, SVGLabel, U) {
+    _registerModule(_modules, 'parts/SVGRenderer.js', [_modules['Core/Color.js'], _modules['Core/Globals.js'], _modules['parts/SVGElement.js'], _modules['parts/SVGLabel.js'], _modules['Core/Utilities.js']], function (Color, H, SVGElement, SVGLabel, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -6202,7 +6209,7 @@
          * Array of path commands, that will go into the `d` attribute of an SVG
          * element.
          *
-         * @typedef {Array<Array<Highcharts.SVGPathCommand,number?,number?,number?,number?,number?,number?,number?>>} Highcharts.SVGPathArray
+         * @typedef {Array<(Array<Highcharts.SVGPathCommand>|Array<Highcharts.SVGPathCommand,number>|Array<Highcharts.SVGPathCommand,number,number>|Array<Highcharts.SVGPathCommand,number,number,number,number>|Array<Highcharts.SVGPathCommand,number,number,number,number,number,number>|Array<Highcharts.SVGPathCommand,number,number,number,number,number,number,number>)>} Highcharts.SVGPathArray
          */
         /**
          * Possible path commands in an SVG path array. Valid values are `A`, `C`, `H`,
@@ -8465,7 +8472,7 @@
 
         return H.Renderer;
     });
-    _registerModule(_modules, 'parts/Html.js', [_modules['parts/Globals.js'], _modules['parts/SVGElement.js'], _modules['parts/SVGRenderer.js'], _modules['parts/Utilities.js']], function (H, SVGElement, SVGRenderer, U) {
+    _registerModule(_modules, 'parts/Html.js', [_modules['Core/Globals.js'], _modules['parts/SVGElement.js'], _modules['parts/SVGRenderer.js'], _modules['Core/Utilities.js']], function (H, SVGElement, SVGRenderer, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -8919,7 +8926,7 @@
         });
 
     });
-    _registerModule(_modules, 'parts/Tick.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'Core/Axis/Tick.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -9696,7 +9703,7 @@
 
         return H.Tick;
     });
-    _registerModule(_modules, 'parts/Time.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (Highcharts, U) {
+    _registerModule(_modules, 'Core/Time.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (Highcharts, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -10367,7 +10374,7 @@
 
         return H.Time;
     });
-    _registerModule(_modules, 'parts/Options.js', [_modules['parts/Globals.js'], _modules['parts/Time.js'], _modules['parts/Color.js'], _modules['parts/Utilities.js']], function (H, Time, Color, U) {
+    _registerModule(_modules, 'Core/Options.js', [_modules['Core/Globals.js'], _modules['Core/Time.js'], _modules['Core/Color.js'], _modules['Core/Utilities.js']], function (H, Time, Color, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -14085,7 +14092,7 @@
 
         return optionsModule;
     });
-    _registerModule(_modules, 'parts/Axis.js', [_modules['parts/Color.js'], _modules['parts/Globals.js'], _modules['parts/Tick.js'], _modules['parts/Utilities.js'], _modules['parts/Options.js']], function (Color, H, Tick, U, O) {
+    _registerModule(_modules, 'Core/Axis/Axis.js', [_modules['Core/Color.js'], _modules['Core/Globals.js'], _modules['Core/Axis/Tick.js'], _modules['Core/Utilities.js'], _modules['Core/Options.js']], function (Color, H, Tick, U, O) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -15511,7 +15518,7 @@
                 }
                 else {
                     // Adjust to hard threshold
-                    if (!softThreshold && defined(threshold)) {
+                    if (softThreshold && defined(threshold)) {
                         if (axis.dataMin >= threshold) {
                             thresholdMin = threshold;
                             minPadding = 0;
@@ -15685,8 +15692,9 @@
                 this.setTickPositions();
             };
             /**
-             * Now we have computed the normalized tickInterval, get the tick positions
+             * Now we have computed the normalized tickInterval, get the tick positions.
              *
+             * @private
              * @function Highcharts.Axis#setTickPositions
              *
              * @fires Highcharts.Axis#event:afterSetTickPositions
@@ -18324,17 +18332,17 @@
                      * @apioption xAxis.labels.useHTML
                      */
                     /**
-                     * The x position offset of the label relative to the tick position
-                     * on the axis.
+                     * The x position offset of all labels relative to the tick
+                     * positions on the axis.
                      *
                      * @sample {highcharts} highcharts/xaxis/labels-x/
                      *         Y axis labels placed on grid lines
                      */
                     x: 0,
                     /**
-                     * The y position offset of the label relative to the tick position
-                     * on the axis. The default makes it adapt to the font size on
-                     * bottom axis.
+                     * The y position offset of all labels relative to the tick
+                     * positions on the axis. The default makes it adapt to the font
+                     * size of the bottom axis.
                      *
                      * @sample {highcharts} highcharts/xaxis/labels-x/
                      *         Y axis labels placed on grid lines
@@ -19607,7 +19615,7 @@
                  * @sample {highcharts} highcharts/demo/gauge-solid/
                  *         True by default
                  *
-                 * @type      {Array<Highcharts.GradientColorStopObject>}
+                 * @type      {Array<Array<number,Highcharts.ColorType>>}
                  * @since     4.0
                  * @product   highcharts
                  * @apioption yAxis.stops
@@ -19622,35 +19630,6 @@
                  * @default   0
                  * @product   highcharts highstock gantt
                  * @apioption yAxis.tickWidth
-                 */
-                /**
-                 * Angular gauges and solid gauges only.
-                 * The label's pixel distance from the perimeter of the plot area.
-                 *
-                 * Since v7.1.2: If it's a percentage string, it is interpreted the
-                 * same as [series.radius](#plotOptions.gauge.radius), so label can be
-                 * aligned under the gauge's shape.
-                 *
-                 * @sample {highcharts} highcharts/yaxis/labels-distance/
-                 *                      Labels centered under the arc
-                 *
-                 * @type      {number|string}
-                 * @default   -25
-                 * @product   highcharts
-                 * @apioption yAxis.labels.distance
-                 */
-                /**
-                 * The y position offset of the label relative to the tick position
-                 * on the axis.
-                 *
-                 * @sample {highcharts} highcharts/xaxis/labels-x/
-                 *         Y axis labels placed on grid lines
-                 *
-                 * @type      {number}
-                 * @default   {highcharts} 3
-                 * @default   {highstock} -2
-                 * @default   {highmaps} 3
-                 * @apioption yAxis.labels.y
                  */
                 /**
                  * Whether to force the axis to end on a tick. Use this option with
@@ -19741,6 +19720,36 @@
                  */
                 labels: {
                     /**
+                     * Angular gauges and solid gauges only.
+                     * The label's pixel distance from the perimeter of the plot area.
+                     *
+                     * Since v7.1.2: If it's a percentage string, it is interpreted the
+                     * same as [series.radius](#plotOptions.gauge.radius), so label can be
+                     * aligned under the gauge's shape.
+                     *
+                     * @sample {highcharts} highcharts/yaxis/labels-distance/
+                     *         Labels centered under the arc
+                     *
+                     * @type      {number|string}
+                     * @default   -25
+                     * @product   highcharts
+                     * @apioption yAxis.labels.distance
+                     */
+                    /**
+                     * The y position offset of all labels relative to the tick
+                     * positions on the axis. For polar and radial axis consider the use
+                     * of the [distance](#yAxis.labels.distance) option.
+                     *
+                     * @sample {highcharts} highcharts/xaxis/labels-x/
+                     *         Y axis labels placed on grid lines
+                     *
+                     * @type      {number}
+                     * @default   {highcharts} 3
+                     * @default   {highstock} -2
+                     * @default   {highmaps} 3
+                     * @apioption yAxis.labels.y
+                     */
+                    /**
                      * What part of the string the given position is anchored to. Can
                      * be one of `"left"`, `"center"` or `"right"`. The exact position
                      * also depends on the `labels.x` setting.
@@ -19762,8 +19771,9 @@
                      * @apioption  yAxis.labels.align
                      */
                     /**
-                     * The x position offset of the label relative to the tick position
-                     * on the axis. Defaults to -15 for left axis, 15 for right axis.
+                     * The x position offset of all labels relative to the tick
+                     * positions on the axis. Defaults to -15 for left axis, 15 for
+                     * right axis.
                      *
                      * @sample {highcharts} highcharts/xaxis/labels-x/
                      *         Y axis labels placed on grid lines
@@ -20302,7 +20312,7 @@
 
         return H.Axis;
     });
-    _registerModule(_modules, 'parts/DateTimeAxis.js', [_modules['parts/Axis.js'], _modules['parts/Utilities.js']], function (Axis, U) {
+    _registerModule(_modules, 'Core/Axis/DateTimeAxis.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Utilities.js']], function (Axis, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -20493,7 +20503,7 @@
 
         return DateTimeAxis;
     });
-    _registerModule(_modules, 'parts/LogarithmicAxis.js', [_modules['parts/Axis.js'], _modules['parts/Utilities.js']], function (Axis, U) {
+    _registerModule(_modules, 'Core/Axis/LogarithmicAxis.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Utilities.js']], function (Axis, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -20684,7 +20694,7 @@
 
         return LogarithmicAxis;
     });
-    _registerModule(_modules, 'parts/PlotLineOrBand.js', [_modules['parts/Axis.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (Axis, H, U) {
+    _registerModule(_modules, 'Core/Axis/PlotLineOrBand.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (Axis, H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -20720,7 +20730,6 @@
             destroyObjectProperties = U.destroyObjectProperties,
             erase = U.erase,
             extend = U.extend,
-            fireEvent = U.fireEvent,
             merge = U.merge,
             objectEach = U.objectEach,
             pick = U.pick;
@@ -21768,7 +21777,7 @@
 
         return H.PlotLineOrBand;
     });
-    _registerModule(_modules, 'parts/Tooltip.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'parts/Tooltip.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -23236,7 +23245,7 @@
 
         return H.Tooltip;
     });
-    _registerModule(_modules, 'parts/Pointer.js', [_modules['parts/Color.js'], _modules['parts/Globals.js'], _modules['parts/Tooltip.js'], _modules['parts/Utilities.js']], function (Color, H, Tooltip, U) {
+    _registerModule(_modules, 'parts/Pointer.js', [_modules['Core/Color.js'], _modules['Core/Globals.js'], _modules['parts/Tooltip.js'], _modules['Core/Utilities.js']], function (Color, H, Tooltip, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -23377,6 +23386,7 @@
                 this.hasDragged = false;
                 this.options = options;
                 this.unbindContainerMouseLeave = function () { };
+                this.unbindContainerMouseEnter = function () { };
                 this.init(chart, options);
             }
             /* *
@@ -24097,6 +24107,7 @@
              * @param {global.MouseEvent} e
              */
             Pointer.prototype.onContainerMouseDown = function (e) {
+                var isPrimaryButton = ((e.buttons || e.button) & 1) === 1;
                 // Normalize before the 'if' for the legacy IE (#7850)
                 e = this.normalize(e);
                 // #11635, Firefox does not reliable fire move event after click scroll
@@ -24106,8 +24117,13 @@
                 }
                 // #11635, limiting to primary button (incl. IE 8 support)
                 if (typeof e.button === 'undefined' ||
-                    ((e.buttons || e.button) & 1) === 1) {
+                    isPrimaryButton) {
                     this.zoomOption(e);
+                    // #295, #13737 solve conflict between container drag and chart zoom
+                    if (isPrimaryButton &&
+                        e.preventDefault) {
+                        e.preventDefault();
+                    }
                     this.dragStart(e);
                 }
             };
@@ -24137,6 +24153,19 @@
                     !tooltip.isHidden) {
                     this.reset();
                 }
+            };
+            /**
+             * When mouse enters the container, delete pointer's chartPosition.
+             *
+             * @private
+             * @function Highcharts.Pointer#onContainerMouseEnter
+             *
+             * @param {global.MouseEvent} e
+             *
+             * @return {void}
+             */
+            Pointer.prototype.onContainerMouseEnter = function (e) {
+                delete this.chartPosition;
             };
             /**
              * The mousemove, touchmove and touchstart event handler
@@ -24732,6 +24761,7 @@
                 container.onmousedown = this.onContainerMouseDown.bind(this);
                 container.onmousemove = this.onContainerMouseMove.bind(this);
                 container.onclick = this.onContainerClick.bind(this);
+                this.unbindContainerMouseEnter = addEvent(container, 'mouseenter', this.onContainerMouseEnter.bind(this));
                 this.unbindContainerMouseLeave = addEvent(container, 'mouseleave', this.onContainerMouseLeave.bind(this));
                 if (!H.unbindDocumentMouseUp) {
                     H.unbindDocumentMouseUp = addEvent(ownerDoc, 'mouseup', this.onDocumentMouseUp.bind(this));
@@ -24849,7 +24879,7 @@
 
         return Pointer;
     });
-    _registerModule(_modules, 'parts/MSPointer.js', [_modules['parts/Globals.js'], _modules['parts/Pointer.js'], _modules['parts/Utilities.js']], function (H, Pointer, U) {
+    _registerModule(_modules, 'parts/MSPointer.js', [_modules['Core/Globals.js'], _modules['parts/Pointer.js'], _modules['Core/Utilities.js']], function (H, Pointer, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -25017,7 +25047,7 @@
 
         return MSPointer;
     });
-    _registerModule(_modules, 'parts/Legend.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'Core/Legend.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -26261,7 +26291,7 @@
 
         return H.Legend;
     });
-    _registerModule(_modules, 'parts/Chart.js', [_modules['parts/Axis.js'], _modules['parts/Globals.js'], _modules['parts/Legend.js'], _modules['parts/MSPointer.js'], _modules['parts/Options.js'], _modules['parts/Pointer.js'], _modules['parts/Time.js'], _modules['parts/Utilities.js']], function (Axis, H, Legend, MSPointer, O, Pointer, Time, U) {
+    _registerModule(_modules, 'parts/Chart.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Globals.js'], _modules['Core/Legend.js'], _modules['parts/MSPointer.js'], _modules['Core/Options.js'], _modules['parts/Pointer.js'], _modules['Core/Time.js'], _modules['Core/Utilities.js']], function (Axis, H, Legend, MSPointer, O, Pointer, Time, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -28454,7 +28484,7 @@
 
         return Chart;
     });
-    _registerModule(_modules, 'parts/ScrollablePlotArea.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (Chart, H, U) {
+    _registerModule(_modules, 'parts/ScrollablePlotArea.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (Chart, H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -28834,7 +28864,7 @@
         };
 
     });
-    _registerModule(_modules, 'parts/StackingAxis.js', [_modules['parts/Utilities.js']], function (U) {
+    _registerModule(_modules, 'Core/Axis/StackingAxis.js', [_modules['Core/Utilities.js']], function (U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -29029,7 +29059,7 @@
 
         return StackingAxis;
     });
-    _registerModule(_modules, 'mixins/legend-symbol.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'mixins/legend-symbol.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -29140,7 +29170,7 @@
 
         return H.LegendSymbolMixin;
     });
-    _registerModule(_modules, 'parts/Point.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'parts/Point.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -29992,7 +30022,7 @@
 
         return Point;
     });
-    _registerModule(_modules, 'parts/Series.js', [_modules['parts/Globals.js'], _modules['mixins/legend-symbol.js'], _modules['parts/Options.js'], _modules['parts/Point.js'], _modules['parts/SVGElement.js'], _modules['parts/Utilities.js']], function (H, LegendSymbolMixin, O, Point, SVGElement, U) {
+    _registerModule(_modules, 'parts/Series.js', [_modules['Core/Globals.js'], _modules['mixins/legend-symbol.js'], _modules['Core/Options.js'], _modules['parts/Point.js'], _modules['parts/SVGElement.js'], _modules['Core/Utilities.js']], function (H, LegendSymbolMixin, O, Point, SVGElement, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -34017,16 +34047,20 @@
             applyExtremes: function () {
                 var dataExtremes = this.getExtremes();
                 /**
-                 * Contains the minimum value of the series' data point.
+                 * Contains the minimum value of the series' data point. Some series
+                 * types like `networkgraph` do not support this property as they
+                 * lack a `y`-value.
                  * @name Highcharts.Series#dataMin
-                 * @type {number}
+                 * @type {number|undefined}
                  * @readonly
                  */
                 this.dataMin = dataExtremes.dataMin;
-                /* *
-                 * Contains the maximum value of the series' data point.
+                /**
+                 * Contains the maximum value of the series' data point. Some series
+                 * types like `networkgraph` do not support this property as they
+                 * lack a `y`-value.
                  * @name Highcharts.Series#dataMax
-                 * @type {number}
+                 * @type {number|undefined}
                  * @readonly
                  */
                 this.dataMax = dataExtremes.dataMax;
@@ -35794,7 +35828,7 @@
         ''; // include precedent doclets in transpilat
 
     });
-    _registerModule(_modules, 'parts/Stacking.js', [_modules['parts/Axis.js'], _modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/StackingAxis.js'], _modules['parts/Utilities.js']], function (Axis, Chart, H, StackingAxis, U) {
+    _registerModule(_modules, 'parts/Stacking.js', [_modules['Core/Axis/Axis.js'], _modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Axis/StackingAxis.js'], _modules['Core/Utilities.js']], function (Axis, Chart, H, StackingAxis, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -36347,7 +36381,7 @@
 
         return H.StackItem;
     });
-    _registerModule(_modules, 'parts/Dynamics.js', [_modules['parts/Axis.js'], _modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Options.js'], _modules['parts/Point.js'], _modules['parts/Time.js'], _modules['parts/Utilities.js']], function (Axis, Chart, H, O, Point, Time, U) {
+    _registerModule(_modules, 'Core/Dynamics.js', [_modules['Core/Axis/Axis.js'], _modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Options.js'], _modules['parts/Point.js'], _modules['Core/Time.js'], _modules['Core/Utilities.js']], function (Axis, Chart, H, O, Point, Time, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -37734,7 +37768,7 @@
         });
 
     });
-    _registerModule(_modules, 'parts/AreaSeries.js', [_modules['parts/Globals.js'], _modules['parts/Color.js'], _modules['mixins/legend-symbol.js'], _modules['parts/Utilities.js']], function (H, Color, LegendSymbolMixin, U) {
+    _registerModule(_modules, 'parts/AreaSeries.js', [_modules['Core/Globals.js'], _modules['Core/Color.js'], _modules['mixins/legend-symbol.js'], _modules['Core/Utilities.js']], function (H, Color, LegendSymbolMixin, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -37852,20 +37886,6 @@
              * @product   highcharts highstock
              * @apioption plotOptions.area.trackByArea
              */
-            /**
-             * When this is true, the series will not cause the Y axis to cross
-             * the zero plane (or [threshold](#plotOptions.series.threshold) option)
-             * unless the data actually crosses the plane.
-             *
-             * For example, if `softThreshold` is `false`, a series of 0, 1, 2,
-             * 3 will make the Y axis show negative values according to the
-             * `minPadding` option. If `softThreshold` is `true`, the Y axis starts
-             * at 0.
-             *
-             * @since   4.1.9
-             * @product highcharts highstock
-             */
-            softThreshold: false,
             /**
              * The Y axis value to serve as the base for the area, for
              * distinguishing between values above and below a threshold. The area
@@ -38257,7 +38277,7 @@
         ''; // adds doclets above to transpilat
 
     });
-    _registerModule(_modules, 'parts/SplineSeries.js', [_modules['parts/Utilities.js']], function (U) {
+    _registerModule(_modules, 'parts/SplineSeries.js', [_modules['Core/Utilities.js']], function (U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -38517,7 +38537,7 @@
         ''; // adds doclets above intro transpilat
 
     });
-    _registerModule(_modules, 'parts/AreaSplineSeries.js', [_modules['parts/Globals.js'], _modules['mixins/legend-symbol.js'], _modules['parts/Options.js'], _modules['parts/Utilities.js']], function (H, LegendSymbolMixin, O, U) {
+    _registerModule(_modules, 'parts/AreaSplineSeries.js', [_modules['Core/Globals.js'], _modules['mixins/legend-symbol.js'], _modules['Core/Options.js'], _modules['Core/Utilities.js']], function (H, LegendSymbolMixin, O, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -38632,7 +38652,7 @@
         ''; // adds doclets above into transpilat
 
     });
-    _registerModule(_modules, 'parts/ColumnSeries.js', [_modules['parts/Globals.js'], _modules['parts/Color.js'], _modules['mixins/legend-symbol.js'], _modules['parts/Utilities.js']], function (H, Color, LegendSymbolMixin, U) {
+    _registerModule(_modules, 'parts/ColumnSeries.js', [_modules['Core/Globals.js'], _modules['Core/Color.js'], _modules['mixins/legend-symbol.js'], _modules['Core/Utilities.js']], function (H, Color, LegendSymbolMixin, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -38665,7 +38685,8 @@
             isNumber = U.isNumber,
             merge = U.merge,
             pick = U.pick,
-            seriesType = U.seriesType;
+            seriesType = U.seriesType,
+            objectEach = U.objectEach;
         var noop = H.noop,
             Series = H.Series,
             svg = H.svg;
@@ -38819,9 +38840,11 @@
              */
             pointPadding: 0.1,
             /**
-             * A pixel value specifying a fixed width for each column or bar. When
-             * `null`, the width is calculated from the `pointPadding` and
-             * `groupPadding`.
+             * A pixel value specifying a fixed width for each column or bar point.
+             * When `null`, the width is calculated from the `pointPadding` and
+             * `groupPadding`. The width effects the dimension that is not based on
+             * the point value. For column series it is the hoizontal length and for
+             * bar series it is the vertical length.
              *
              * @see [maxPointWidth](#plotOptions.column.maxPointWidth)
              *
@@ -38981,22 +39004,6 @@
                  */
                 y: void 0
             },
-            /**
-             * When this is true, the series will not cause the Y axis to cross
-             * the zero plane (or [threshold](#plotOptions.series.threshold) option)
-             * unless the data actually crosses the plane.
-             *
-             * For example, if `softThreshold` is `false`, a series of 0, 1, 2,
-             * 3 will make the Y axis show negative values according to the
-             * `minPadding` option. If `softThreshold` is `true`, the Y axis starts
-             * at 0.
-             *
-             * @since   4.1.9
-             * @product highcharts highstock
-             *
-             * @private
-             */
-            softThreshold: false,
             // false doesn't work well: https://jsfiddle.net/highcharts/hz8fopan/14/
             /**
              * @ignore-option
@@ -39245,7 +39252,7 @@
                     // enabled, but `centerInCategory` is true, there is one stack
                     // handling the grouping of points in each category. This is
                     // done in the `setGroupedPoints` function.
-                    Highcharts.objectEach(this.yAxis.stacking && this.yAxis.stacking.stacks, function (stack) {
+                    objectEach(this.yAxis.stacking && this.yAxis.stacking.stacks, function (stack) {
                         if (typeof point.x === 'number') {
                             var stackItem = stack[point.x.toString()];
                             if (stackItem) {
@@ -39741,7 +39748,8 @@
          */
         /**
          * A pixel value specifying a fixed width for the column or bar. Overrides
-         * pointWidth on the series.
+         * pointWidth on the series. The width effects the dimension that is not based
+         * on the point value.
          *
          * @see [series.pointWidth](#plotOptions.column.pointWidth)
          *
@@ -39761,7 +39769,7 @@
         ''; // includes above doclets in transpilat
 
     });
-    _registerModule(_modules, 'parts/BarSeries.js', [_modules['parts/Utilities.js']], function (U) {
+    _registerModule(_modules, 'parts/BarSeries.js', [_modules['Core/Utilities.js']], function (U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -39881,7 +39889,7 @@
         ''; // gets doclets above into transpilat
 
     });
-    _registerModule(_modules, 'parts/ScatterSeries.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'parts/ScatterSeries.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -39912,7 +39920,7 @@
          *         Scatter plot
          *
          * @extends      plotOptions.line
-         * @excluding    pointPlacement, shadow, useOhlcData
+         * @excluding    cropThreshold, pointPlacement, shadow, useOhlcData
          * @product      highcharts highstock
          * @optionparent plotOptions.scatter
          */
@@ -40072,7 +40080,7 @@
          * not specified, it is inherited from [chart.type](#chart.type).
          *
          * @extends   series,plotOptions.scatter
-         * @excluding dataParser, dataURL, useOhlcData
+         * @excluding cropThreshold, dataParser, dataURL, useOhlcData
          * @product   highcharts highstock
          * @apioption series.scatter
          */
@@ -40138,7 +40146,7 @@
         ''; // adds doclets above to transpilat
 
     });
-    _registerModule(_modules, 'mixins/centered-series.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'mixins/centered-series.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -40258,7 +40266,7 @@
         };
 
     });
-    _registerModule(_modules, 'parts/PieSeries.js', [_modules['parts/Globals.js'], _modules['mixins/legend-symbol.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js']], function (H, LegendSymbolMixin, Point, U) {
+    _registerModule(_modules, 'parts/PieSeries.js', [_modules['Core/Globals.js'], _modules['parts/SVGRenderer.js'], _modules['mixins/legend-symbol.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js']], function (H, SVGRenderer, LegendSymbolMixin, Point, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -41084,7 +41092,7 @@
                             .add(this.group);
                     }
                     this.graph.attr({
-                        d: Highcharts.SVGRenderer.prototype.symbols.arc(centerX, centerY, this.center[2] / 2, 0, {
+                        d: SVGRenderer.prototype.symbols.arc(centerX, centerY, this.center[2] / 2, 0, {
                             start: start,
                             end: end,
                             innerR: this.center[3] / 2
@@ -41503,7 +41511,8 @@
          * it is inherited from [chart.type](#chart.type).
          *
          * @extends   series,plotOptions.pie
-         * @excluding dataParser, dataURL, stack, xAxis, yAxis, dataSorting, step
+         * @excluding cropThreshold, dataParser, dataURL, stack, xAxis, yAxis,
+         *            dataSorting, step
          * @product   highcharts
          * @apioption series.pie
          */
@@ -41581,7 +41590,7 @@
         ''; // placeholder for transpiled doclets above
 
     });
-    _registerModule(_modules, 'parts/DataLabels.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'parts/DataLabels.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -42849,7 +42858,7 @@
         }
 
     });
-    _registerModule(_modules, 'modules/overlapping-datalabels.src.js', [_modules['parts/Chart.js'], _modules['parts/Utilities.js']], function (Chart, U) {
+    _registerModule(_modules, 'modules/overlapping-datalabels.src.js', [_modules['parts/Chart.js'], _modules['Core/Utilities.js']], function (Chart, U) {
         /* *
          *
          *  Highcharts module to hide overlapping data labels.
@@ -43039,7 +43048,6 @@
                                     label.css({ pointerEvents: newOpacity ? 'auto' : 'none' });
                                 }
                                 label.visibility = newOpacity ? 'inherit' : 'hidden';
-                                label.placed = !!newOpacity;
                             };
                             isLabelAffected = true;
                             // Animate or set the opacity
@@ -43062,7 +43070,7 @@
         };
 
     });
-    _registerModule(_modules, 'parts/Interaction.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Legend.js'], _modules['parts/Options.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js']], function (Chart, H, Legend, O, Point, U) {
+    _registerModule(_modules, 'Core/Interaction.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Legend.js'], _modules['Core/Options.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js']], function (Chart, H, Legend, O, Point, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -44331,7 +44339,7 @@
         });
 
     });
-    _registerModule(_modules, 'parts/Responsive.js', [_modules['parts/Chart.js'], _modules['parts/Utilities.js']], function (Chart, U) {
+    _registerModule(_modules, 'Core/Responsive.js', [_modules['parts/Chart.js'], _modules['Core/Utilities.js']], function (Chart, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -44616,7 +44624,7 @@
         };
 
     });
-    _registerModule(_modules, 'masters/highcharts.src.js', [_modules['parts/Globals.js']], function (Highcharts) {
+    _registerModule(_modules, 'masters/highcharts.src.js', [_modules['Core/Globals.js']], function (Highcharts) {
 
 
         return Highcharts;

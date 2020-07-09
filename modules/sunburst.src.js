@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * (c) 2016-2019 Highsoft AS
  * Authors: Jon Arild Nygard
@@ -106,7 +106,7 @@
 
         return drawPoint;
     });
-    _registerModule(_modules, 'mixins/tree-series.js', [_modules['parts/Color.js'], _modules['parts/Utilities.js']], function (Color, U) {
+    _registerModule(_modules, 'mixins/tree-series.js', [_modules['Core/Color.js'], _modules['Core/Utilities.js']], function (Color, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -334,7 +334,7 @@
 
         return result;
     });
-    _registerModule(_modules, 'modules/treemap.src.js', [_modules['parts/Globals.js'], _modules['mixins/tree-series.js'], _modules['mixins/draw-point.js'], _modules['parts/Color.js'], _modules['mixins/legend-symbol.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js']], function (H, mixinTreeSeries, drawPoint, Color, LegendSymbolMixin, Point, U) {
+    _registerModule(_modules, 'modules/treemap.src.js', [_modules['Core/Globals.js'], _modules['mixins/tree-series.js'], _modules['mixins/draw-point.js'], _modules['Core/Color.js'], _modules['mixins/legend-symbol.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js']], function (H, mixinTreeSeries, drawPoint, Color, LegendSymbolMixin, Point, U) {
         /* *
          *
          *  (c) 2014-2020 Highsoft AS
@@ -2032,7 +2032,7 @@
         ''; // adds doclets above to transpiled file
 
     });
-    _registerModule(_modules, 'modules/sunburst.src.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['mixins/draw-point.js'], _modules['mixins/tree-series.js']], function (H, U, drawPoint, mixinTreeSeries) {
+    _registerModule(_modules, 'modules/sunburst.src.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['mixins/draw-point.js'], _modules['mixins/tree-series.js']], function (H, U, drawPoint, mixinTreeSeries) {
         /* *
          *
          *  This module implements sunburst charts in Highcharts.

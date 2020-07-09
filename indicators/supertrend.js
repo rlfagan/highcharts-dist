@@ -1,5 +1,5 @@
 /*
- Highstock JS v8.1.2 (2020-06-16)
+ Highstock JS v8.1.2 (2020-07-09)
 
  Indicator series type for Highstock
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/indicators/supertrend",["highcharts","highcharts/modules/stock"],function(l){c(l);c.Highcharts=l;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function l(c,m,B,l){c.hasOwnProperty(m)||(c[m]=l.apply(null,B))}c=c?c._modules:{};l(c,"indicators/supertrend.src.js",[c["parts/Globals.js"],c["parts/Utilities.js"]],function(c,m){function l(d,
+(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/indicators/supertrend",["highcharts","highcharts/modules/stock"],function(l){c(l);c.Highcharts=l;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function l(c,m,B,l){c.hasOwnProperty(m)||(c[m]=l.apply(null,B))}c=c?c._modules:{};l(c,"indicators/supertrend.src.js",[c["Core/Globals.js"],c["Core/Utilities.js"]],function(c,m){function l(d,
 b,n){return{index:b,close:d.yData[b][n],x:d.xData[b]}}var z=m.correctFloat,v=m.merge,C=m.seriesType,D=m.isArray,E=m.objectEach,F=c.seriesTypes.atr,A=c.seriesTypes.sma;C("supertrend","sma",{params:{multiplier:3,period:10},risingTrendColor:"#06B535",fallingTrendColor:"#F21313",changeTrendLine:{styles:{lineWidth:1,lineColor:"#333333",dashStyle:"LongDash"}}},{nameBase:"Supertrend",nameComponents:["multiplier","period"],requiredIndicators:["atr"],init:function(){A.prototype.init.apply(this,arguments);
 var d=this.options;d.cropThreshold=this.linkedParent.options.cropThreshold-(d.params.period-1)},drawGraph:function(){var d=this,b=d.options,n=d.linkedParent,c=n?n.points:[],y=d.points,m=d.graph,t=y.length,u=c.length-t;u=0<u?u:0;for(var x={options:{gapSize:b.gapSize}},k={top:[],bottom:[],intersect:[]},w={top:{styles:{lineWidth:b.lineWidth,lineColor:b.fallingTrendColor||b.color,dashStyle:b.dashStyle}},bottom:{styles:{lineWidth:b.lineWidth,lineColor:b.risingTrendColor||b.color,dashStyle:b.dashStyle}},
 intersect:b.changeTrendLine},a,h,e,f,g,p,q,r;t--;)a=y[t],h=y[t-1],e=c[t-1+u],f=c[t-2+u],g=c[t+u],p=c[t+u+1],q=a.options.color,r={x:a.x,plotX:a.plotX,plotY:a.plotY,isNull:!1},!f&&e&&n.yData[e.index-1]&&(f=l(n,e.index-1,3)),!p&&g&&n.yData[g.index+1]&&(p=l(n,g.index+1,3)),!e&&f&&n.yData[f.index+1]?e=l(n,f.index+1,3):!e&&g&&n.yData[g.index-1]&&(e=l(n,g.index-1,3)),a&&e&&g&&f&&a.x!==e.x&&(a.x===g.x?(f=e,e=g):a.x===f.x?(e=f,f={close:n.yData[e.index-1][3],x:n.xData[e.index-1]}):p&&a.x===p.x&&(e=p,f=g)),

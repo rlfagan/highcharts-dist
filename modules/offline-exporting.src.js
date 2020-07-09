@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Client side exporting module
  *
@@ -28,7 +28,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'mixins/download-url.js', [_modules['parts/Globals.js']], function (Highcharts) {
+    _registerModule(_modules, 'mixins/download-url.js', [_modules['Core/Globals.js']], function (Highcharts) {
         /* *
          *
          *  (c) 2015-2020 Oystein Moseng
@@ -129,7 +129,7 @@
         };
 
     });
-    _registerModule(_modules, 'modules/offline-exporting.src.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/SVGRenderer.js'], _modules['parts/Utilities.js']], function (Chart, H, SVGRenderer, U) {
+    _registerModule(_modules, 'modules/offline-exporting.src.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['parts/SVGRenderer.js'], _modules['Core/Utilities.js']], function (Chart, H, SVGRenderer, U) {
         /* *
          *
          *  Client side exporting module

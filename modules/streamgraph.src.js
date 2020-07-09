@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Streamgraph module
  *
@@ -28,7 +28,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'modules/streamgraph.src.js', [_modules['parts/Utilities.js']], function (U) {
+    _registerModule(_modules, 'modules/streamgraph.src.js', [_modules['Core/Utilities.js']], function (U) {
         /* *
          *
          *  Streamgraph module

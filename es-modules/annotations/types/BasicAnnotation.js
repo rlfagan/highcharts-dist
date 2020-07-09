@@ -19,7 +19,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import Annotation from '../annotations.src.js';
 import MockPoint from '../MockPoint.js';
-import U from '../../parts/Utilities.js';
+import U from '../../Core/Utilities.js';
 var merge = U.merge;
 /* eslint-disable no-invalid-this */
 var BasicAnnotation = /** @class */ (function (_super) {
@@ -38,13 +38,27 @@ var BasicAnnotation = /** @class */ (function (_super) {
      *
      * */
     BasicAnnotation.prototype.addControlPoints = function () {
-        var options = this.options, controlPoints = BasicAnnotation.basicControlPoints, langKey = options.langKey, optionsGroup = options.labels || options.shapes;
+        var options = this.options, controlPoints = BasicAnnotation.basicControlPoints, annotationType = this.basicType, optionsGroup = options.labels || options.shapes;
         optionsGroup.forEach(function (group) {
-            if (langKey) {
-                // @todo langKey === 'label' / 'circle' / 'rectangle' ???
-                group.controlPoints = controlPoints[langKey];
-            }
+            group.controlPoints = controlPoints[annotationType];
         });
+    };
+    BasicAnnotation.prototype.init = function () {
+        var options = this.options;
+        if (options.shapes) {
+            delete options.labelOptions;
+            if (options.shapes[0].type === 'circle') {
+                this.basicType = 'circle';
+            }
+            else {
+                this.basicType = 'rectangle';
+            }
+        }
+        else {
+            delete options.shapes;
+            this.basicType = 'label';
+        }
+        Annotation.prototype.init.apply(this, arguments);
     };
     /* *
      *

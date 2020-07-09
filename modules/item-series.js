@@ -1,5 +1,5 @@
 /*
- Highcharts JS v8.1.2 (2020-06-16)
+ Highcharts JS v8.1.2 (2020-07-09)
 
  Item series type for Highcharts
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define("highcharts/modules/item-series",["highcharts"],function(d){b(d);b.Highcharts=d;return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){function d(b,d,c,C){b.hasOwnProperty(d)||(b[d]=C.apply(null,c))}b=b?b._modules:{};d(b,"modules/item-series.src.js",[b["parts/Globals.js"],b["parts/Options.js"],b["parts/Utilities.js"]],function(b,d,c){var C=c.defined,
+(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define("highcharts/modules/item-series",["highcharts"],function(d){b(d);b.Highcharts=d;return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){function d(b,d,c,C){b.hasOwnProperty(d)||(b[d]=C.apply(null,c))}b=b?b._modules:{};d(b,"modules/item-series.src.js",[b["Core/Globals.js"],b["Core/Options.js"],b["Core/Utilities.js"]],function(b,d,c){var C=c.defined,
 F=c.extend,G=c.fireEvent,D=c.isNumber,H=c.merge,I=c.objectEach,J=c.pick;c=c.seriesType;var m=b.seriesTypes.pie.prototype.pointClass.prototype;c("item","pie",{endAngle:void 0,innerSize:"40%",itemPadding:.1,layout:"vertical",marker:H(d.defaultOptions.plotOptions.line.marker,{radius:null}),rows:void 0,crisp:!1,showInLegend:!0,startAngle:void 0},{markerAttribs:void 0,translate:function(a){0===this.total&&(this.center=this.getCenter());this.slots||(this.slots=[]);D(this.options.startAngle)&&D(this.options.endAngle)?
 (b.seriesTypes.pie.prototype.translate.apply(this,arguments),this.slots=this.getSlots()):(this.generatePoints(),G(this,"afterTranslate"))},getSlots:function(){function a(a){0<B&&(a.row.colCount--,B--)}for(var b=this.center,c=b[2],d=b[3],x,n=this.slots,r,y,t,u,v,f,l,w,h=0,p,z=this.endAngleRad-this.startAngleRad,q=Number.MAX_VALUE,A,e,k,g=this.options.rows,m=(c-d)/c,E=0===z%(2*Math.PI);q>this.total+(e&&E?e.length:0);)for(A=q,q=n.length=0,e=k,k=[],h++,p=c/h/2,g?(d=(p-g)/p*c,0<=d?p=g:(d=0,m=1)):p=Math.floor(p*
 m),x=p;0<x;x--)t=(d+x/p*(c-d-h))/2,u=z*t,v=Math.ceil(u/h),k.push({rowRadius:t,rowLength:u,colCount:v}),q+=v+1;if(e){for(var B=A-this.total-(E?e.length:0);0<B;)e.map(function(a){return{angle:a.colCount/a.rowLength,row:a}}).sort(function(a,b){return b.angle-a.angle}).slice(0,Math.min(B,Math.ceil(e.length/2))).forEach(a);e.forEach(function(a){var c=a.rowRadius;f=(a=a.colCount)?z/a:0;for(w=0;w<=a;w+=1)l=this.startAngleRad+w*f,r=b[0]+Math.cos(l)*c,y=b[1]+Math.sin(l)*c,n.push({x:r,y:y,angle:l})},this);

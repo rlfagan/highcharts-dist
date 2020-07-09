@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Force directed graph module
  *
@@ -28,7 +28,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'mixins/nodes.js', [_modules['parts/Globals.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js']], function (H, Point, U) {
+    _registerModule(_modules, 'mixins/nodes.js', [_modules['Core/Globals.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js']], function (H, Point, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -216,7 +216,7 @@
         };
 
     });
-    _registerModule(_modules, 'modules/networkgraph/integrations.js', [_modules['parts/Globals.js']], function (H) {
+    _registerModule(_modules, 'modules/networkgraph/integrations.js', [_modules['Core/Globals.js']], function (H) {
         /* *
          *
          *  Networkgraph series
@@ -594,7 +594,7 @@
         };
 
     });
-    _registerModule(_modules, 'modules/networkgraph/QuadTree.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'modules/networkgraph/QuadTree.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  Networkgraph series
@@ -956,7 +956,7 @@
         });
 
     });
-    _registerModule(_modules, 'modules/networkgraph/layouts.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (Chart, H, U) {
+    _registerModule(_modules, 'modules/networkgraph/layouts.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (Chart, H, U) {
         /* *
          *
          *  Networkgraph series
@@ -1538,7 +1538,7 @@
         });
 
     });
-    _registerModule(_modules, 'modules/networkgraph/draggable-nodes.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (Chart, H, U) {
+    _registerModule(_modules, 'modules/networkgraph/draggable-nodes.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (Chart, H, U) {
         /* *
          *
          *  Networkgraph series
@@ -1681,7 +1681,7 @@
         });
 
     });
-    _registerModule(_modules, 'modules/networkgraph/networkgraph.src.js', [_modules['parts/Globals.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js']], function (H, Point, U) {
+    _registerModule(_modules, 'modules/networkgraph/networkgraph.src.js', [_modules['Core/Globals.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js']], function (H, Point, U) {
         /* *
          *
          *  Networkgraph series
@@ -1755,7 +1755,7 @@
          *               Networkgraph
          * @since        7.0.0
          * @excluding    boostThreshold, animation, animationLimit, connectEnds,
-         *               colorAxis, colorKey, connectNulls, dragDrop,
+         *               colorAxis, colorKey, connectNulls, cropThreshold, dragDrop,
          *               getExtremesFromAll, label, linecap, negativeColor,
          *               pointInterval, pointIntervalUnit, pointPlacement,
          *               pointStart, softThreshold, stack, stacking, step,
@@ -2655,8 +2655,8 @@
          *
          * @extends   series,plotOptions.networkgraph
          * @excluding boostThreshold, animation, animationLimit, connectEnds,
-         *            connectNulls, dragDrop, getExtremesFromAll, label, linecap,
-         *            negativeColor, pointInterval, pointIntervalUnit,
+         *            connectNulls, cropThreshold, dragDrop, getExtremesFromAll, label,
+         *            linecap, negativeColor, pointInterval, pointIntervalUnit,
          *            pointPlacement, pointStart, softThreshold, stack, stacking,
          *            step, threshold, xAxis, yAxis, zoneAxis, dataSorting
          * @product   highcharts

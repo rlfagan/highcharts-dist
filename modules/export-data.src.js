@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Exporting module
  *
@@ -28,7 +28,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'mixins/ajax.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'mixins/ajax.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2017 Christer Vasseng, Torstein Honsi
@@ -177,7 +177,7 @@
         };
 
     });
-    _registerModule(_modules, 'mixins/download-url.js', [_modules['parts/Globals.js']], function (Highcharts) {
+    _registerModule(_modules, 'mixins/download-url.js', [_modules['Core/Globals.js']], function (Highcharts) {
         /* *
          *
          *  (c) 2015-2020 Oystein Moseng
@@ -278,7 +278,7 @@
         };
 
     });
-    _registerModule(_modules, 'modules/export-data.src.js', [_modules['parts/Axis.js'], _modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (Axis, Chart, H, U) {
+    _registerModule(_modules, 'modules/export-data.src.js', [_modules['Core/Axis/Axis.js'], _modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (Axis, Chart, H, U) {
         /* *
          *
          *  Experimental data export module for Highcharts
@@ -666,7 +666,9 @@
             // Create point array depends if xAxis is category
             // or point.name is defined #13293
             getPointArray = function (series, xAxis) {
-                var namedPoints = series.data.filter(function (d) { return d.name; });
+                var namedPoints = series.data.filter(function (d) {
+                        return (typeof d.y !== 'undefined') && d.name;
+                });
                 if (namedPoints.length &&
                     xAxis &&
                     !xAxis.categories &&

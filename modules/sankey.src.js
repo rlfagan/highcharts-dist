@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Sankey diagram module
  *
@@ -28,7 +28,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'mixins/nodes.js', [_modules['parts/Globals.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js']], function (H, Point, U) {
+    _registerModule(_modules, 'mixins/nodes.js', [_modules['Core/Globals.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js']], function (H, Point, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -216,7 +216,7 @@
         };
 
     });
-    _registerModule(_modules, 'mixins/tree-series.js', [_modules['parts/Color.js'], _modules['parts/Utilities.js']], function (Color, U) {
+    _registerModule(_modules, 'mixins/tree-series.js', [_modules['Core/Color.js'], _modules['Core/Utilities.js']], function (Color, U) {
         /* *
          *
          *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
@@ -444,7 +444,7 @@
 
         return result;
     });
-    _registerModule(_modules, 'modules/sankey.src.js', [_modules['parts/Globals.js'], _modules['parts/Color.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js'], _modules['mixins/tree-series.js']], function (H, Color, Point, U, mixinTreeSeries) {
+    _registerModule(_modules, 'modules/sankey.src.js', [_modules['Core/Globals.js'], _modules['Core/Color.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js'], _modules['mixins/tree-series.js']], function (H, Color, Point, U, mixinTreeSeries) {
         /* *
          *
          *  Sankey diagram module

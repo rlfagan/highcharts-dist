@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * (c) 2009-2018 Torstein Honsi
  *
@@ -26,7 +26,7 @@
             obj[path] = fn.apply(null, args);
         }
     }
-    _registerModule(_modules, 'parts-more/Pane.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Pointer.js'], _modules['parts/Utilities.js']], function (Chart, H, Pointer, U) {
+    _registerModule(_modules, 'parts-more/Pane.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['parts/Pointer.js'], _modules['Core/Utilities.js']], function (Chart, H, Pointer, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -386,7 +386,7 @@
          * @return {boolean}
          */
         function isInsidePane(x, y, center) {
-            return Math.sqrt(Math.pow(x - center[0], 2) + Math.pow(y - center[1], 2)) < center[2] / 2;
+            return Math.sqrt(Math.pow(x - center[0], 2) + Math.pow(y - center[1], 2)) <= center[2] / 2;
         }
         H.Chart.prototype.getHoverPane = function (eventArgs) {
             var chart = this;
@@ -487,7 +487,7 @@
 
         return HiddenAxis;
     });
-    _registerModule(_modules, 'parts-more/RadialAxis.js', [_modules['parts/Axis.js'], _modules['parts/Tick.js'], _modules['parts-more/HiddenAxis.js'], _modules['parts/Utilities.js']], function (Axis, Tick, HiddenAxis, U) {
+    _registerModule(_modules, 'parts-more/RadialAxis.js', [_modules['Core/Axis/Axis.js'], _modules['Core/Axis/Tick.js'], _modules['parts-more/HiddenAxis.js'], _modules['Core/Utilities.js']], function (Axis, Tick, HiddenAxis, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -1403,7 +1403,7 @@
 
         return RadialAxis;
     });
-    _registerModule(_modules, 'parts-more/AreaRangeSeries.js', [_modules['parts/Globals.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js']], function (H, Point, U) {
+    _registerModule(_modules, 'parts-more/AreaRangeSeries.js', [_modules['Core/Globals.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js']], function (H, Point, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -2065,7 +2065,7 @@
         ''; // adds doclets above to tranpiled file
 
     });
-    _registerModule(_modules, 'parts-more/AreaSplineRangeSeries.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'parts-more/AreaSplineRangeSeries.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -2162,7 +2162,7 @@
         ''; // adds doclets above to transpiled file
 
     });
-    _registerModule(_modules, 'parts-more/ColumnRangeSeries.js', [_modules['parts/Globals.js'], _modules['parts/Options.js'], _modules['parts/Utilities.js']], function (H, O, U) {
+    _registerModule(_modules, 'parts-more/ColumnRangeSeries.js', [_modules['Core/Globals.js'], _modules['Core/Options.js'], _modules['Core/Utilities.js']], function (H, O, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -2421,7 +2421,7 @@
         ''; // adds doclets above into transpiled
 
     });
-    _registerModule(_modules, 'parts-more/ColumnPyramidSeries.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'parts-more/ColumnPyramidSeries.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Sebastian Bochan
@@ -2711,7 +2711,7 @@
         ''; // adds doclets above to transpiled file;
 
     });
-    _registerModule(_modules, 'parts-more/GaugeSeries.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'parts-more/GaugeSeries.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -3255,7 +3255,7 @@
         ''; // adds the doclets above in the transpiled file
 
     });
-    _registerModule(_modules, 'parts-more/BoxPlotSeries.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'parts-more/BoxPlotSeries.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -3349,8 +3349,8 @@
              */
             lineWidth: 1,
             /**
-             * The color of the median line. If `undefined`, the general series color
-             * applies.
+             * The color of the median line. If `undefined`, the general series
+             * color applies.
              *
              * In styled mode, the median stroke width can be set with the
              * `.highcharts-boxplot-median` class.
@@ -3529,7 +3529,9 @@
              * @product highcharts
              */
             whiskerWidth: 2
-        }, /** @lends Highcharts.seriesTypes.boxplot */ {
+        }, 
+        /** @lends Highcharts.seriesTypes.boxplot */
+        {
             // array point configs are mapped to this
             pointArrayMap: ['low', 'q1', 'median', 'q3', 'high'],
             // return a plain array for speedy calculation
@@ -3900,7 +3902,7 @@
         ''; // adds doclets above to transpiled file
 
     });
-    _registerModule(_modules, 'parts-more/ErrorBarSeries.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'parts-more/ErrorBarSeries.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -4065,7 +4067,7 @@
         ''; // adds doclets above to transpiled file
 
     });
-    _registerModule(_modules, 'parts-more/WaterfallSeries.js', [_modules['parts/Axis.js'], _modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Point.js'], _modules['parts/Stacking.js'], _modules['parts/Utilities.js']], function (Axis, Chart, H, Point, StackItem, U) {
+    _registerModule(_modules, 'parts-more/WaterfallSeries.js', [_modules['Core/Axis/Axis.js'], _modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['parts/Point.js'], _modules['parts/Stacking.js'], _modules['Core/Utilities.js']], function (Axis, Chart, H, Point, StackItem, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -4966,7 +4968,7 @@
 
         return WaterfallAxis;
     });
-    _registerModule(_modules, 'parts-more/PolygonSeries.js', [_modules['parts/Globals.js'], _modules['mixins/legend-symbol.js'], _modules['parts/Utilities.js']], function (H, LegendSymbolMixin, U) {
+    _registerModule(_modules, 'parts-more/PolygonSeries.js', [_modules['Core/Globals.js'], _modules['mixins/legend-symbol.js'], _modules['Core/Utilities.js']], function (H, LegendSymbolMixin, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -5108,7 +5110,7 @@
         ''; // adds doclets above to transpiled file
 
     });
-    _registerModule(_modules, 'parts-more/BubbleLegend.js', [_modules['parts/Chart.js'], _modules['parts/Color.js'], _modules['parts/Globals.js'], _modules['parts/Legend.js'], _modules['parts/Utilities.js']], function (Chart, Color, H, Legend, U) {
+    _registerModule(_modules, 'parts-more/BubbleLegend.js', [_modules['parts/Chart.js'], _modules['Core/Color.js'], _modules['Core/Globals.js'], _modules['Core/Legend.js'], _modules['Core/Utilities.js']], function (Chart, Color, H, Legend, U) {
         /* *
          *
          *  (c) 2010-2020 Highsoft AS
@@ -6124,7 +6126,7 @@
 
         return H.BubbleLegend;
     });
-    _registerModule(_modules, 'parts-more/BubbleSeries.js', [_modules['parts/Globals.js'], _modules['parts/Color.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js']], function (H, Color, Point, U) {
+    _registerModule(_modules, 'parts-more/BubbleSeries.js', [_modules['Core/Globals.js'], _modules['Core/Color.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js']], function (H, Color, Point, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi
@@ -6729,7 +6731,7 @@
         ''; // adds doclets above to transpiled file
 
     });
-    _registerModule(_modules, 'modules/networkgraph/integrations.js', [_modules['parts/Globals.js']], function (H) {
+    _registerModule(_modules, 'modules/networkgraph/integrations.js', [_modules['Core/Globals.js']], function (H) {
         /* *
          *
          *  Networkgraph series
@@ -7107,7 +7109,7 @@
         };
 
     });
-    _registerModule(_modules, 'modules/networkgraph/QuadTree.js', [_modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (H, U) {
+    _registerModule(_modules, 'modules/networkgraph/QuadTree.js', [_modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (H, U) {
         /* *
          *
          *  Networkgraph series
@@ -7469,7 +7471,7 @@
         });
 
     });
-    _registerModule(_modules, 'modules/networkgraph/layouts.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (Chart, H, U) {
+    _registerModule(_modules, 'modules/networkgraph/layouts.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (Chart, H, U) {
         /* *
          *
          *  Networkgraph series
@@ -8051,7 +8053,7 @@
         });
 
     });
-    _registerModule(_modules, 'modules/networkgraph/draggable-nodes.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (Chart, H, U) {
+    _registerModule(_modules, 'modules/networkgraph/draggable-nodes.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (Chart, H, U) {
         /* *
          *
          *  Networkgraph series
@@ -8194,7 +8196,7 @@
         });
 
     });
-    _registerModule(_modules, 'parts-more/PackedBubbleSeries.js', [_modules['parts/Chart.js'], _modules['parts/Color.js'], _modules['parts/Globals.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js']], function (Chart, Color, H, Point, U) {
+    _registerModule(_modules, 'parts-more/PackedBubbleSeries.js', [_modules['parts/Chart.js'], _modules['Core/Color.js'], _modules['Core/Globals.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js']], function (Chart, Color, H, Point, U) {
         /* *
          *
          *  (c) 2010-2018 Grzegorz Blachlinski, Sebastian Bochan
@@ -8430,9 +8432,9 @@
          *         Split packed bubble chart
 
          * @extends      plotOptions.bubble
-         * @excluding    connectEnds, connectNulls, dragDrop, jitter, keys,
-         *               pointPlacement, sizeByAbsoluteValue, step, xAxis, yAxis,
-         *               zMax, zMin, dataSorting
+         * @excluding    connectEnds, connectNulls, cropThreshold, dragDrop, jitter,
+         *               keys, pointPlacement, sizeByAbsoluteValue, step, xAxis,
+         *               yAxis, zMax, zMin, dataSorting
          * @product      highcharts
          * @since        7.0.0
          * @requires     highcharts-more
@@ -9616,7 +9618,7 @@
          *
          * @type      {Object}
          * @extends   series,plotOptions.packedbubble
-         * @excluding dataParser, dataSorting, dataURL, dragDrop, stack
+         * @excluding cropThreshold, dataParser, dataSorting, dataURL, dragDrop, stack
          * @product   highcharts
          * @requires  highcharts-more
          * @apioption series.packedbubble
@@ -9669,7 +9671,7 @@
         ''; // adds doclets above to transpiled file
 
     });
-    _registerModule(_modules, 'parts-more/Polar.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts-more/Pane.js'], _modules['parts/Pointer.js'], _modules['parts/SVGRenderer.js'], _modules['parts/Utilities.js']], function (Chart, H, Pane, Pointer, SVGRenderer, U) {
+    _registerModule(_modules, 'parts-more/Polar.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['parts-more/Pane.js'], _modules['parts/Pointer.js'], _modules['parts/SVGRenderer.js'], _modules['Core/Utilities.js']], function (Chart, H, Pane, Pointer, SVGRenderer, U) {
         /* *
          *
          *  (c) 2010-2020 Torstein Honsi

@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v8.1.2 (2020-06-16)
+ * @license Highcharts JS v8.1.2 (2020-07-09)
  *
  * Boost module
  *
@@ -139,7 +139,7 @@
 
         return boostableMap;
     });
-    _registerModule(_modules, 'modules/boost/wgl-shader.js', [_modules['parts/Utilities.js']], function (U) {
+    _registerModule(_modules, 'modules/boost/wgl-shader.js', [_modules['Core/Utilities.js']], function (U) {
         /* *
          *
          *  Copyright (c) 2019-2020 Highsoft AS
@@ -156,7 +156,7 @@
             pick = U.pick;
         /* eslint-disable valid-jsdoc */
         /**
-         * A static shader mimicing axis translation functions found in parts/Axis
+         * A static shader mimicing axis translation functions found in Core/Axis
          *
          * @private
          * @function GLShader
@@ -774,7 +774,7 @@
 
         return GLVertexBuffer;
     });
-    _registerModule(_modules, 'modules/boost/wgl-renderer.js', [_modules['parts/Globals.js'], _modules['modules/boost/wgl-shader.js'], _modules['modules/boost/wgl-vbuffer.js'], _modules['parts/Color.js'], _modules['parts/Utilities.js']], function (H, GLShader, GLVertexBuffer, Color, U) {
+    _registerModule(_modules, 'modules/boost/wgl-renderer.js', [_modules['Core/Globals.js'], _modules['modules/boost/wgl-shader.js'], _modules['modules/boost/wgl-vbuffer.js'], _modules['Core/Color.js'], _modules['Core/Utilities.js']], function (H, GLShader, GLVertexBuffer, Color, U) {
         /* *
          *
          *  Copyright (c) 2019-2020 Highsoft AS
@@ -1949,7 +1949,7 @@
 
         return GLRenderer;
     });
-    _registerModule(_modules, 'modules/boost/boost-attach.js', [_modules['modules/boost/wgl-renderer.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js']], function (GLRenderer, H, U) {
+    _registerModule(_modules, 'modules/boost/boost-attach.js', [_modules['modules/boost/wgl-renderer.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js']], function (GLRenderer, H, U) {
         /* *
          *
          *  Copyright (c) 2019-2020 Highsoft AS
@@ -2094,7 +2094,7 @@
 
         return createAndAttachRenderer;
     });
-    _registerModule(_modules, 'modules/boost/boost-utils.js', [_modules['parts/Globals.js'], _modules['modules/boost/boostable-map.js'], _modules['modules/boost/boost-attach.js'], _modules['parts/Utilities.js']], function (H, boostableMap, createAndAttachRenderer, U) {
+    _registerModule(_modules, 'modules/boost/boost-utils.js', [_modules['Core/Globals.js'], _modules['modules/boost/boostable-map.js'], _modules['modules/boost/boost-attach.js'], _modules['Core/Utilities.js']], function (H, boostableMap, createAndAttachRenderer, U) {
         /* *
          *
          *  Copyright (c) 2019-2020 Highsoft AS
@@ -2360,7 +2360,7 @@
 
         return funs;
     });
-    _registerModule(_modules, 'modules/boost/boost-init.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Utilities.js'], _modules['modules/boost/boost-utils.js'], _modules['modules/boost/boost-attach.js']], function (Chart, H, U, butils, createAndAttachRenderer) {
+    _registerModule(_modules, 'modules/boost/boost-init.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['Core/Utilities.js'], _modules['modules/boost/boost-utils.js'], _modules['modules/boost/boost-attach.js']], function (Chart, H, U, butils, createAndAttachRenderer) {
         /* *
          *
          *  Copyright (c) 2019-2020 Highsoft AS
@@ -2667,7 +2667,7 @@
 
         return init;
     });
-    _registerModule(_modules, 'modules/boost/boost-overrides.js', [_modules['parts/Chart.js'], _modules['parts/Globals.js'], _modules['parts/Point.js'], _modules['parts/Utilities.js'], _modules['modules/boost/boost-utils.js'], _modules['modules/boost/boostables.js'], _modules['modules/boost/boostable-map.js']], function (Chart, H, Point, U, butils, boostable, boostableMap) {
+    _registerModule(_modules, 'modules/boost/boost-overrides.js', [_modules['parts/Chart.js'], _modules['Core/Globals.js'], _modules['parts/Point.js'], _modules['Core/Utilities.js'], _modules['modules/boost/boost-utils.js'], _modules['modules/boost/boostables.js'], _modules['modules/boost/boostable-map.js']], function (Chart, H, Point, U, butils, boostable, boostableMap) {
         /* *
          *
          *  Copyright (c) 2019-2020 Highsoft AS
@@ -3060,7 +3060,7 @@
         });
 
     });
-    _registerModule(_modules, 'modules/boost/named-colors.js', [_modules['parts/Color.js']], function (Color) {
+    _registerModule(_modules, 'modules/boost/named-colors.js', [_modules['Core/Color.js']], function (Color) {
         /* *
          *
          *  Copyright (c) 2019-2020 Highsoft AS
@@ -3223,7 +3223,7 @@
 
         return defaultHTMLColorMap;
     });
-    _registerModule(_modules, 'modules/boost/boost.js', [_modules['parts/Globals.js'], _modules['modules/boost/boost-utils.js'], _modules['modules/boost/boost-init.js'], _modules['parts/Utilities.js']], function (H, butils, init, U) {
+    _registerModule(_modules, 'modules/boost/boost.js', [_modules['Core/Globals.js'], _modules['modules/boost/boost-utils.js'], _modules['modules/boost/boost-init.js'], _modules['Core/Utilities.js']], function (H, butils, init, U) {
         /* *
          *
          *  Copyright (c) 2019-2020 Highsoft AS
