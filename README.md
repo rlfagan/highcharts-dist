@@ -9,6 +9,8 @@ This package is intended for supporting client-side JavaScript charting through 
 * Issues: [Working repo](https://github.com/highcharts/highcharts/issues)
 
 ## Download and install Highcharts
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frlfagan%2Fhighcharts-dist.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frlfagan%2Fhighcharts-dist?ref=badge_shield)
+
 Please note that there are several ways to use Highcharts. For general installation instructions, see [the docs](http://www.highcharts.com/docs/getting-started/installation).
 ### Use our CDN
 Instead of downloading, you can use our CDN to access files directly. See [code.highcharts.com](https://code.highcharts.com) for details.
@@ -91,3 +93,7 @@ Highcharts.chart('container', {
 });
 ```
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frlfagan%2Fhighcharts-dist.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Frlfagan%2Fhighcharts-dist?ref=badge_large)
